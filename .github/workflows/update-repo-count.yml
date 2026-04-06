@@ -1,0 +1,198 @@
+name: 🔢 Auto-Update Repo Count
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'   # Every 6 hours
+  push:
+    branches: [ main ]
+  workflow_dispatch:         # Manual trigger from Actions tab
+
+jobs:
+  update-count:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Fetch repo counts & update README
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_USER: SNTL84
+        run: |
+          # ── Fetch public repo count ──────────────────────────────────────
+          PUBLIC=$(curl -s \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/users/$GH_USER" \
+            | python3 -c "import sys,json; print(json.load(sys.stdin)['public_repos'])")
+
+          # ── Fetch total repo count (public + private) via /user ──────────
+          TOTAL_DATA=$(curl -s \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/user")
+
+          PRIVATE=$(echo "$TOTAL_DATA" | python3 -c \
+            "import sys,json; d=json.load(sys.stdin); print(d.get('owned_private_repos',0))")
+
+          TOTAL=$(( PUBLIC + PRIVATE ))
+          DATE=$(date -u +"%Y-%m-%d %H:%M UTC")
+
+          # ── Fetch public repo list ───────────────────────────────────────
+          REPOS_JSON=$(curl -s \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/users/$GH_USER/repos?per_page=100&sort=updated")
+
+          # ── Build repo list markdown ─────────────────────────────────────
+          REPO_LIST=$(echo "$REPOS_JSON" | python3 -c "
+import sys, json
+repos = json.load(sys.stdin)
+rows = []
+for i, r in enumerate(repos, 1):
+    name  = r['name']
+    url   = r['html_url']
+    desc  = (r.get('description') or '—')[:60]
+    lang  = r.get('language') or '—'
+    date  = (r.get('updated_at') or '')[:10]
+    rows.append(f'| {i} | [{name}]({url}) | {desc} | {lang} | {date} |')
+print('\n'.join(rows))
+")
+
+          # ── Inject count block into README ───────────────────────────────
+          python3 - <<'PYEOF'
+import re, os
+
+public  = os.environ['PUBLIC']
+private = os.environ['PRIVATE']
+total   = os.environ['TOTAL']
+date    = os.environ['DATE']
+repo_list = os.environ['REPO_LIST']
+
+count_block = f"""<!-- REPO_COUNT_START -->
+| Metric | Count |
+|--------|-------|
+| 🌐 Public Repos | **{public}** |
+| 🔒 Private Repos | **{private}** |
+| 📦 Total Repos | **{total}** |
+<!-- REPO_COUNT_END -->
+
+> ⏱ *Last updated: {date} · Auto-refreshes every 6 hours via GitHub Actions*"""
+
+list_block = f"""<!-- REPO_LIST_START -->
+| # | Repository | Description | Language | Updated |
+|---|-----------|-------------|----------|---------|
+{repo_list}
+<!-- REPO_LIST_END -->"""
+
+readme = open('README.md', 'r').read()
+readme = re.sub(
+    r'<!-- REPO_COUNT_START -->.*?<!-- REPO_COUNT_END -->\n\n> .*?Actions\*',
+    count_block, readme, flags=re.DOTALL)
+readme = re.sub(
+    r'<!-- REPO_LIST_START -->.*?<!-- REPO_LIST_END -->',
+    list_block, readme, flags=re.DOTALL)
+open('README.md', 'w').write(readme)
+print('README.md updated successfully')
+PYEOF
+        env:
+          PUBLIC: "${{ env.PUBLIC }}"
+          PRIVATE: "${{ env.PRIVATE }}"
+          TOTAL: "${{ env.TOTAL }}"
+          DATE: "${{ env.DATE }}"
+          REPO_LIST: "${{ env.REPO_LIST }}"
+
+      - name: Export shell vars to env file
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_USER: SNTL84
+        run: |
+          PUBLIC=$(curl -s \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/users/$GH_USER" \
+            | python3 -c "import sys,json; print(json.load(sys.stdin)['public_repos'])")
+          TOTAL_DATA=$(curl -s \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/user")
+          PRIVATE=$(echo "$TOTAL_DATA" | python3 -c \
+            "import sys,json; d=json.load(sys.stdin); print(d.get('owned_private_repos',0))")
+          TOTAL=$(( PUBLIC + PRIVATE ))
+          DATE=$(date -u +"%Y-%m-%d %H:%M UTC")
+          REPOS_JSON=$(curl -s \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/users/$GH_USER/repos?per_page=100&sort=updated")
+          REPO_LIST=$(echo "$REPOS_JSON" | python3 -c "
+import sys, json
+repos = json.load(sys.stdin)
+rows = []
+for i, r in enumerate(repos, 1):
+    name  = r['name']
+    url   = r['html_url']
+    desc  = (r.get('description') or '—')[:60]
+    lang  = r.get('language') or '—'
+    date  = (r.get('updated_at') or '')[:10]
+    rows.append(f'| {i} | [{name}]({url}) | {desc} | {lang} | {date} |')
+print('\n'.join(rows))
+")
+          echo "PUBLIC=$PUBLIC" >> $GITHUB_ENV
+          echo "PRIVATE=$PRIVATE" >> $GITHUB_ENV
+          echo "TOTAL=$TOTAL" >> $GITHUB_ENV
+          echo "DATE=$DATE" >> $GITHUB_ENV
+          # Use EOF delimiter for multiline REPO_LIST
+          echo "REPO_LIST<<ENDOFLIST" >> $GITHUB_ENV
+          echo "$REPO_LIST" >> $GITHUB_ENV
+          echo "ENDOFLIST" >> $GITHUB_ENV
+
+      - name: Update README with live counts
+        run: |
+          python3 - <<'PYEOF'
+import re, os
+
+public    = os.environ.get('PUBLIC', '?')
+private   = os.environ.get('PRIVATE', '?')
+total     = os.environ.get('TOTAL', '?')
+date      = os.environ.get('DATE', '?')
+repo_list = os.environ.get('REPO_LIST', '')
+
+count_block = f"""<!-- REPO_COUNT_START -->
+| Metric | Count |
+|--------|-------|
+| 🌐 Public Repos | **{public}** |
+| 🔒 Private Repos | **{private}** |
+| 📦 Total Repos | **{total}** |
+<!-- REPO_COUNT_END -->
+
+> ⏱ *Last updated: {date} · Auto-refreshes every 6 hours via GitHub Actions*"""
+
+list_block = f"""<!-- REPO_LIST_START -->
+| # | Repository | Description | Language | Updated |
+|---|-----------|-------------|----------|---------|
+{repo_list}
+<!-- REPO_LIST_END -->"""
+
+readme = open('README.md', 'r').read()
+readme = re.sub(
+    r'<!-- REPO_COUNT_START -->.*?<!-- REPO_COUNT_END -->\n\n> .*?Actions\*',
+    count_block, readme, flags=re.DOTALL)
+readme = re.sub(
+    r'<!-- REPO_LIST_START -->.*?<!-- REPO_LIST_END -->',
+    list_block, readme, flags=re.DOTALL)
+open('README.md', 'w').write(readme)
+print('✅ README.md updated')
+PYEOF
+
+      - name: Commit & push updated README
+        run: |
+          git config user.name  "SNTL84-Bot"
+          git config user.email "3goldenlotusroots@gmail.com"
+          git add README.md
+          git diff --cached --quiet || git commit -m "🔢 auto-update: repo count · $(date -u '+%Y-%m-%d %H:%M UTC') · SNTL84"
+          git push
