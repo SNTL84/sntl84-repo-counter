@@ -12,12 +12,12 @@
 <!-- REPO_COUNT_START -->
 | Metric | Count |
 |--------|-------|
-| 🌐 Public Repos | **8** |
+| 🌐 Public Repos | **9** |
 | 🔒 Private Repos | **6** |
-| 📦 Total Repos | **14** |
+| 📦 Total Repos | **15** |
 <!-- REPO_COUNT_END -->
 
-> 🕐 *Last updated: 2026-04-09 13:00 UTC · Auto-refreshes every 6 hours via GitHub Actions*
+> 🕐 *Last updated: 2026-04-09 17:00 UTC · Auto-refreshes every 6 hours via GitHub Actions*
 
 ---
 
@@ -40,13 +40,14 @@
 | # | Repository | Description | Type | Language | Updated |
 |---|------------|-------------|------|----------|---------|
 | 1 | [sntl84-repo-counter](https://github.com/SNTL84/sntl84-repo-counter) | 🔢 Auto-updating repo counter for SNTL84 · Milan · desidevloper.com — l | 🌐 Public | HTML | 2026-04-09 |
-| 2 | [sntl84-backoffice-os](https://github.com/SNTL84/sntl84-backoffice-os) | 🏢 BACKOFFICE OS v2.0 — A small utility HR back-office dashboard. Atten | 🌐 Public | HTML | 2026-04-06 |
-| 3 | [desi-quote](https://github.com/SNTL84/desi-quote) | ⚡ DesiQuote — Instant Gig Quote Calculator by Milan · SNTL 84 · deside | 🌐 Public | HTML | 2026-04-05 |
-| 4 | [SNTL84](https://github.com/SNTL84/SNTL84) | — | 🌐 Public | — | 2026-04-04 |
-| 5 | [sntl84-superpowers](https://github.com/SNTL84/sntl84-superpowers) | An agentic skills framework & software development methodology that wo | 🌐 Public | Shell | 2026-03-30 |
-| 6 | [linkedin-activity-archive](https://github.com/SNTL84/linkedin-activity-archive) | Complete LinkedIn activity archive for SNTL2784 - Posts, reposts, medi | 🌐 Public | — | 2026-03-30 |
-| 7 | [desidevloper-services-page](https://github.com/SNTL84/desidevloper-services-page) | Desi devloper Services page  | 🌐 Public | — | 2026-03-30 |
-| 8 | [ai-studio-99page-generator](https://github.com/SNTL84/ai-studio-99page-generator) | 99 Page in 3 prompts | 🌐 Public | TypeScript | 2026-03-30 |
+| 2 | [real-estate-claude-agent](https://github.com/SNTL84/real-estate-claude-agent) | 🏠 AI-powered property valuation & investment analysis for Surat, Gujarat — SNTL84 Framework | 🌐 Public | TypeScript | 2026-04-09 |
+| 3 | [sntl84-backoffice-os](https://github.com/SNTL84/sntl84-backoffice-os) | 🏢 BACKOFFICE OS v2.0 — A small utility HR back-office dashboard. Atten | 🌐 Public | HTML | 2026-04-06 |
+| 4 | [desi-quote](https://github.com/SNTL84/desi-quote) | ⚡ DesiQuote — Instant Gig Quote Calculator by Milan · SNTL 84 · deside | 🌐 Public | HTML | 2026-04-05 |
+| 5 | [SNTL84](https://github.com/SNTL84/SNTL84) | — | 🌐 Public | — | 2026-04-04 |
+| 6 | [sntl84-superpowers](https://github.com/SNTL84/sntl84-superpowers) | An agentic skills framework & software development methodology that wo | 🌐 Public | Shell | 2026-03-30 |
+| 7 | [linkedin-activity-archive](https://github.com/SNTL84/linkedin-activity-archive) | Complete LinkedIn activity archive for SNTL2784 - Posts, reposts, medi | 🌐 Public | — | 2026-03-30 |
+| 8 | [desidevloper-services-page](https://github.com/SNTL84/desidevloper-services-page) | Desi devloper Services page  | 🌐 Public | — | 2026-03-30 |
+| 9 | [ai-studio-99page-generator](https://github.com/SNTL84/ai-studio-99page-generator) | 99 Page in 3 prompts | 🌐 Public | TypeScript | 2026-03-30 |
 | — | *6 private repos* | *Not listed for privacy* | 🔒 Private | — | — |
 <!-- REPO_LIST_END -->
 
