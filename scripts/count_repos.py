@@ -7,12 +7,9 @@ I Automate What's Costing You Money.
 
 How counts work:
   PUBLIC count  → /users/SNTL84 (public API, always works, no auth)
-  PRIVATE count → env var GH_PAT_PRIVATE_COUNT (set as GitHub Secret)
-                  OR env var PRIVATE_REPO_COUNT (fallback integer)
-                  OR 0 if neither is set
+  PRIVATE count → env var GH_PAT (set as GitHub Secret with repo scope)
+                  Falls back to 0 if not set
   TOTAL         → public + private
-
-Public repo LIST is fetched via /users/SNTL84/repos (always public).
 
 To unlock private count:
   1. Create a PAT with repo scope
@@ -28,8 +25,8 @@ import re
 import requests
 from datetime import datetime, timezone
 
-TOKEN   = os.environ.get("GH_TOKEN", "")   # built-in GITHUB_TOKEN or PAT
-GH_PAT  = os.environ.get("GH_PAT", "")     # optional PAT with repo scope
+TOKEN   = os.environ.get("GH_TOKEN", "")   # built-in GITHUB_TOKEN
+GH_PAT  = os.environ.get("GH_PAT", "")     # PAT with repo scope for private count
 USER    = "SNTL84"
 
 HEADERS = {
@@ -62,28 +59,26 @@ def fetch_public_repos():
     return repos
 
 def get_private_count():
-    """Try to get private count via PAT. Returns int or None."""
+    """Get real private count via GH_PAT. Returns int."""
     if GH_PAT:
         try:
             data = gh_get("https://api.github.com/user", hdrs=PAT_HEADERS)
-            pub  = data.get("public_repos", 0)
             owned = data.get("owned_private_repos", 0)
+            pub   = data.get("public_repos", 0)
             print(f"PAT auth — public={pub}, private={owned}")
             return owned
         except Exception as e:
-            print(f"PAT fetch failed: {e}")
-    # Try PRIVATE_REPO_COUNT env var (set manually in workflow)
-    try:
-        return int(os.environ.get("PRIVATE_REPO_COUNT", "0"))
-    except Exception:
-        return 0
+            print(f"PAT fetch failed: {e} — defaulting private count to 0")
+    else:
+        print("GH_PAT not set — private count will be 0. Add GH_PAT secret for accurate count.")
+    return 0
 
 def main():
     # 1. Public repos (always works)
     public_repos  = fetch_public_repos()
     public_count  = len(public_repos)
 
-    # 2. Private count
+    # 2. Private count (live via PAT)
     private_count = get_private_count()
     total_count   = public_count + private_count
     date_str      = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
@@ -97,7 +92,7 @@ def main():
     for i, r in enumerate(public_repos, 1):
         name = r["name"]
         url  = r["html_url"]
-        desc = (r.get("description") or "—")[:70].replace("|", "｜")
+        desc = (r.get("description") or "—")[:90].replace("|", "｜")
         lang = r.get("language") or "—"
         date = (r.get("updated_at") or "")[:10]
         rows.append(f"| {i} | [{name}]({url}) | {desc} | 🌐 Public | {lang} | {date} |")

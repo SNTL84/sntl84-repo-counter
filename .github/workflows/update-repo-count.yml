@@ -36,8 +36,7 @@ jobs:
       - name: Run repo counter & update README
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GH_PAT: ${{ secrets.GH_PAT }}          # Optional: PAT with repo scope for private count
-          PRIVATE_REPO_COUNT: '6'                 # Fallback private count (update manually if needed)
+          GH_PAT: ${{ secrets.GH_PAT }}   # PAT with repo scope — add in Settings > Secrets
         run: python scripts/count_repos.py
 
       - name: Commit & push if README changed
