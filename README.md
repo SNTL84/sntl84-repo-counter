@@ -12,12 +12,12 @@
 <!-- REPO_COUNT_START -->
 | Metric | Count |
 |--------|-------|
-| 🌐 Public Repos | **11** |
+| 🌐 Public Repos | **12** |
 | 🔒 Private Repos | **0** |
-| 📦 Total Repos | **11** |
+| 📦 Total Repos | **12** |
 <!-- REPO_COUNT_END -->
 
-> 🕐 *Last updated: 2026-04-10 12:43 UTC · Auto-refreshes every 6 hours via GitHub Actions*
+> 🕐 *Last updated: 2026-04-10 18:38 UTC · Auto-refreshes every 6 hours via GitHub Actions*
 
 ---
 
@@ -39,17 +39,18 @@
 <!-- REPO_LIST_START -->
 | # | Repository | Description | Type | Language | Updated |
 |---|------------|-------------|------|----------|---------|
-| 1 | [sntl84-repo-counter](https://github.com/SNTL84/sntl84-repo-counter) | 🔢 Auto-updating repo counter for SNTL84 · Milan · desidevloper.com — live count of all rep | 🌐 Public | HTML | 2026-04-10 |
-| 2 | [ai-hiring-intel](https://github.com/SNTL84/ai-hiring-intel) | AI Hiring Intelligence System — Strict, business-focused resume evaluator. Built by Milan  | 🌐 Public | CSS | 2026-04-10 |
-| 3 | [SNTL84](https://github.com/SNTL84/SNTL84) | — | 🌐 Public | — | 2026-04-10 |
-| 4 | [sntl84-hiring-system](https://github.com/SNTL84/sntl84-hiring-system) | AI-Powered Hiring System — Smart Job Board & Candidate Portal by SNTL 84 ｜ Vercel-Ready ｜  | 🌐 Public | — | 2026-04-10 |
-| 5 | [real-estate-claude-agent](https://github.com/SNTL84/real-estate-claude-agent) | AI-powered property valuation & investment analysis for Surat, Gujarat — SNTL84 Framework  | 🌐 Public | TypeScript | 2026-04-09 |
-| 6 | [sntl84-backoffice-os](https://github.com/SNTL84/sntl84-backoffice-os) | 🏢 BACKOFFICE OS v2.0 — A small utility HR back-office dashboard. Attendance, payroll, expe | 🌐 Public | HTML | 2026-04-06 |
-| 7 | [desi-quote](https://github.com/SNTL84/desi-quote) | ⚡ DesiQuote — Instant Gig Quote Calculator by Milan · SNTL 84 · desidevloper.com ｜ AI Work | 🌐 Public | HTML | 2026-04-05 |
-| 8 | [sntl84-superpowers](https://github.com/SNTL84/sntl84-superpowers) | An agentic skills framework & software development methodology that works. | 🌐 Public | Shell | 2026-03-30 |
-| 9 | [linkedin-activity-archive](https://github.com/SNTL84/linkedin-activity-archive) | Complete LinkedIn activity archive for SNTL2784 - Posts, reposts, media links, analytics | 🌐 Public | — | 2026-03-30 |
-| 10 | [desidevloper-services-page](https://github.com/SNTL84/desidevloper-services-page) | Desi devloper Services page  | 🌐 Public | — | 2026-03-30 |
-| 11 | [ai-studio-99page-generator](https://github.com/SNTL84/ai-studio-99page-generator) | 99 Page in 3 prompts | 🌐 Public | TypeScript | 2026-03-30 |
+| 1 | [developer-profile-journey](https://github.com/SNTL84/developer-profile-journey) | Automate What's Costing You Money. SNTL 84 Developer Profile + Python Journey Tracker | 🌐 Public | HTML | 2026-04-10 |
+| 2 | [desidevloper-services-page](https://github.com/SNTL84/desidevloper-services-page) | Desi devloper Services page  | 🌐 Public | — | 2026-04-10 |
+| 3 | [desi-quote](https://github.com/SNTL84/desi-quote) | ⚡ DesiQuote — Instant Gig Quote Calculator by Milan · SNTL 84 · desidevloper.com ｜ AI Work | 🌐 Public | HTML | 2026-04-10 |
+| 4 | [sntl84-backoffice-os](https://github.com/SNTL84/sntl84-backoffice-os) | 🏢 BACKOFFICE OS v2.0 — A small utility HR back-office dashboard. Attendance, payroll, expe | 🌐 Public | HTML | 2026-04-10 |
+| 5 | [sntl84-hiring-system](https://github.com/SNTL84/sntl84-hiring-system) | AI-Powered Hiring System — Smart Job Board & Candidate Portal by SNTL 84 ｜ Vercel-Ready ｜  | 🌐 Public | — | 2026-04-10 |
+| 6 | [SNTL84](https://github.com/SNTL84/SNTL84) | — | 🌐 Public | — | 2026-04-10 |
+| 7 | [ai-hiring-intel](https://github.com/SNTL84/ai-hiring-intel) | AI Hiring Intelligence System — Strict, business-focused resume evaluator. Built by Milan  | 🌐 Public | CSS | 2026-04-10 |
+| 8 | [sntl84-repo-counter](https://github.com/SNTL84/sntl84-repo-counter) | 🔢 Auto-updating repo counter for SNTL84 · Milan · desidevloper.com — live count of all rep | 🌐 Public | HTML | 2026-04-10 |
+| 9 | [real-estate-claude-agent](https://github.com/SNTL84/real-estate-claude-agent) | AI-powered property valuation & investment analysis for Surat, Gujarat — SNTL84 Framework  | 🌐 Public | TypeScript | 2026-04-09 |
+| 10 | [sntl84-superpowers](https://github.com/SNTL84/sntl84-superpowers) | An agentic skills framework & software development methodology that works. | 🌐 Public | Shell | 2026-03-30 |
+| 11 | [linkedin-activity-archive](https://github.com/SNTL84/linkedin-activity-archive) | Complete LinkedIn activity archive for SNTL2784 - Posts, reposts, media links, analytics | 🌐 Public | — | 2026-03-30 |
+| 12 | [ai-studio-99page-generator](https://github.com/SNTL84/ai-studio-99page-generator) | 99 Page in 3 prompts | 🌐 Public | TypeScript | 2026-03-30 |
 <!-- REPO_LIST_END -->
 
 ---
