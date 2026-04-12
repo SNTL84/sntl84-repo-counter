@@ -6,11 +6,12 @@ Milan · SNTL 84 · desidevloper.com
 I Automate What's Costing You Money.
 
 How counts work:
-  PUBLIC repos  → GraphQL viewer.repositories(privacy: PUBLIC)
-  PRIVATE count → GraphQL viewer.repositories(privacy: PRIVATE)
-  GITHUB_TOKEN (built-in Actions token) has the `repo` scope by default
-  when the workflow sets `permissions: contents: write` — this IS enough
-  for GraphQL viewer queries scoped to the authenticated user.
+  PUBLIC repos  → /users/SNTL84/repos (public REST, no auth needed)
+  PRIVATE count → /user REST endpoint with GITHUB_TOKEN
+                   GITHUB_TOKEN in Actions returns owned_private_repos
+                   accurately for the authenticated user.
+  If GH_PAT is set (classic token, repo scope), it is used instead
+  for maximum accuracy.
   TOTAL         → public + private
 
 Local usage:
@@ -30,112 +31,78 @@ HEADERS = {
     "X-GitHub-Api-Version": "2022-11-28",
 }
 
-GRAPHQL_URL = "https://api.github.com/graphql"
 
-
-def graphql(query, variables=None):
-    payload = {"query": query}
-    if variables:
-        payload["variables"] = variables
-    r = requests.post(GRAPHQL_URL, json=payload, headers=HEADERS, timeout=15)
+def gh_get(url, params=None, auth=True):
+    headers = HEADERS if auth else {"Accept": "application/vnd.github+json"}
+    r = requests.get(url, headers=headers, params=params, timeout=15)
     if r.status_code != 200:
-        print(f"[ERROR] GraphQL {r.status_code}: {r.text[:300]}")
+        print(f"[ERROR] GET {url} → {r.status_code}: {r.text[:300]}")
         r.raise_for_status()
-    data = r.json()
-    if "errors" in data:
-        print(f"[ERROR] GraphQL errors: {data['errors']}")
-        raise RuntimeError("GraphQL error")
-    return data["data"]
+    return r.json()
 
 
-def get_all_counts():
+def fetch_public_repos():
+    """Paginate all public repos for USER via unauthenticated public API."""
+    repos, page = [], 1
+    while True:
+        batch = gh_get(
+            f"https://api.github.com/users/{USER}/repos",
+            params={"per_page": 100, "page": page, "sort": "updated"},
+            auth=False,
+        )
+        if not batch:
+            break
+        repos.extend(batch)
+        if len(batch) < 100:
+            break
+        page += 1
+    print(f"[REST] Fetched {len(repos)} public repos via /users/{USER}/repos")
+    return repos
+
+
+def get_private_count():
     """
-    Use GraphQL viewer query — works with GITHUB_TOKEN in Actions
-    when workflow has `permissions: contents: write`.
-    Returns (public_count, private_count, public_repos_list).
+    Call /user with GITHUB_TOKEN to get owned_private_repos.
+    GITHUB_TOKEN in Actions is authenticated as the repo owner (SNTL84)
+    and DOES return the correct owned_private_repos count.
+    Returns (private_count, login).
     """
-    query = """
-    query($cursor: String) {
-      viewer {
-        login
-        publicRepos: repositories(privacy: PUBLIC, first: 100, after: $cursor, ownerAffiliations: OWNER) {
-          totalCount
-          pageInfo { hasNextPage endCursor }
-          nodes {
-            name
-            url
-            description
-            primaryLanguage { name }
-            updatedAt
-            isPrivate
-          }
-        }
-        privateRepos: repositories(privacy: PRIVATE, ownerAffiliations: OWNER) {
-          totalCount
-        }
-      }
-    }
-    """
-    # First page
-    data = graphql(query)
-    viewer = data["viewer"]
-    login = viewer["login"]
-    print(f"[GraphQL] Authenticated as: {login}")
-
-    public_total = viewer["publicRepos"]["totalCount"]
-    private_total = viewer["privateRepos"]["totalCount"]
-    public_repos = list(viewer["publicRepos"]["nodes"])
-    page_info = viewer["publicRepos"]["pageInfo"]
-
-    # Paginate public repos if needed
-    while page_info["hasNextPage"]:
-        page_query = """
-        query($cursor: String) {
-          viewer {
-            publicRepos: repositories(privacy: PUBLIC, first: 100, after: $cursor, ownerAffiliations: OWNER) {
-              pageInfo { hasNextPage endCursor }
-              nodes {
-                name
-                url
-                description
-                primaryLanguage { name }
-                updatedAt
-                isPrivate
-              }
-            }
-          }
-        }
-        """
-        page_data = graphql(page_query, {"cursor": page_info["endCursor"]})
-        batch = page_data["viewer"]["publicRepos"]
-        public_repos.extend(batch["nodes"])
-        page_info = batch["pageInfo"]
-
-    print(f"[GraphQL] Public: {public_total}  Private: {private_total}")
-    return public_total, private_total, public_repos
+    if not TOKEN:
+        print("[WARN] No token — private count will be 0.")
+        return 0, "unknown"
+    try:
+        data = gh_get("https://api.github.com/user", auth=True)
+        login          = data.get("login", "unknown")
+        private_count  = data.get("owned_private_repos", 0)
+        total_private  = data.get("total_private_repos", 0)
+        print(f"[REST /user] login={login}")
+        print(f"[REST /user] owned_private_repos={private_count}  total_private_repos={total_private}")
+        return private_count, login
+    except Exception as e:
+        print(f"[ERROR] /user fetch failed: {e}")
+        return 0, "unknown"
 
 
 def main():
-    if not TOKEN:
-        print("[WARN] No token — cannot fetch counts.")
-        return
-
-    public_count, private_count, public_repos = get_all_counts()
-    total_count = public_count + private_count
-    date_str = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    # 1. Fetch counts
+    public_repos   = fetch_public_repos()
+    public_count   = len(public_repos)
+    private_count, login = get_private_count()
+    total_count    = public_count + private_count
+    date_str       = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 
     print(f"\nPublic:  {public_count}")
     print(f"Private: {private_count}")
     print(f"Total:   {total_count}\n")
 
-    # Build repo list rows (public only, private not listed)
+    # 2. Build repo list rows
     rows = []
     for i, r in enumerate(public_repos, 1):
         name = r["name"]
-        url  = r["url"]
+        url  = r["html_url"]
         desc = (r.get("description") or "\u2014")[:90].replace("|", "\uff5c")
-        lang = (r.get("primaryLanguage") or {}).get("name") or "\u2014"
-        date = (r.get("updatedAt") or "")[:10]
+        lang = r.get("language") or "\u2014"
+        date = (r.get("updated_at") or "")[:10]
         rows.append(f"| {i} | [{name}]({url}) | {desc} | \U0001f310 Public | {lang} | {date} |")
 
     if private_count > 0:
@@ -146,6 +113,7 @@ def main():
 
     repo_table = "\n".join(rows)
 
+    # 3. Build README blocks
     count_block = (
         "<!-- REPO_COUNT_START -->\n"
         "| Metric | Count |\n"
@@ -165,6 +133,7 @@ def main():
         "<!-- REPO_LIST_END -->"
     )
 
+    # 4. Patch README
     with open("README.md", "r", encoding="utf-8") as f:
         readme = f.read()
 
