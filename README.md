@@ -13,11 +13,12 @@
 | Metric | Count |
 |--------|-------|
 | 🌐 Public Repos | **12** |
-| 🔒 Private Repos | **0** |
+| 🔒 Private Repos | **0** ⚠️ |
 | 📦 Total Repos | **12** |
 <!-- REPO_COUNT_END -->
 
-> 🕐 *Last updated: 2026-04-12 01:23 UTC · Auto-refreshes every 6 hours via GitHub Actions*
+> 🕐 *Last updated: 2026-04-12 06:07 UTC · Auto-refreshes every 6 hours via GitHub Actions*
+> ⚠️ **Private count is unavailable.** Add a `GH_PAT` secret (with `repo` scope) in [Settings → Secrets](https://github.com/SNTL84/sntl84-repo-counter/settings/secrets/actions) to display accurate private repo count.
 
 ---
 
@@ -39,7 +40,7 @@
 <!-- REPO_LIST_START -->
 | # | Repository | Description | Type | Language | Updated |
 |---|------------|-------------|------|----------|---------|
-| 1 | [sntl84-repo-counter](https://github.com/SNTL84/sntl84-repo-counter) | 🔢 Auto-updating repo counter for SNTL84 · Milan · desidevloper.com — live count of all rep | 🌐 Public | HTML | 2026-04-11 |
+| 1 | [sntl84-repo-counter](https://github.com/SNTL84/sntl84-repo-counter) | 🔢 Auto-updating repo counter for SNTL84 · Milan · desidevloper.com — live count of all rep | 🌐 Public | HTML | 2026-04-12 |
 | 2 | [developer-profile-journey](https://github.com/SNTL84/developer-profile-journey) | Automate What's Costing You Money. SNTL 84 Developer Profile + Python Journey Tracker | 🌐 Public | HTML | 2026-04-10 |
 | 3 | [desidevloper-services-page](https://github.com/SNTL84/desidevloper-services-page) | Desi devloper Services page  | 🌐 Public | — | 2026-04-10 |
 | 4 | [desi-quote](https://github.com/SNTL84/desi-quote) | ⚡ DesiQuote — Instant Gig Quote Calculator by Milan · SNTL 84 · desidevloper.com ｜ AI Work | 🌐 Public | HTML | 2026-04-10 |
@@ -51,6 +52,7 @@
 | 10 | [sntl84-superpowers](https://github.com/SNTL84/sntl84-superpowers) | An agentic skills framework & software development methodology that works. | 🌐 Public | Shell | 2026-03-30 |
 | 11 | [linkedin-activity-archive](https://github.com/SNTL84/linkedin-activity-archive) | Complete LinkedIn activity archive for SNTL2784 - Posts, reposts, media links, analytics | 🌐 Public | — | 2026-03-30 |
 | 12 | [ai-studio-99page-generator](https://github.com/SNTL84/ai-studio-99page-generator) | 99 Page in 3 prompts | 🌐 Public | TypeScript | 2026-03-30 |
+| — | *Private repos* | ⚠️ GH_PAT not set — private count unavailable | 🔒 Private | — | — |
 <!-- REPO_LIST_END -->
 
 ---
