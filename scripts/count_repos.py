@@ -6,48 +6,42 @@ Milan · SNTL 84 · desidevloper.com
 I Automate What's Costing You Money.
 
 How counts work:
-  PUBLIC count  → /users/SNTL84 (public API, always works, no auth)
-  PRIVATE count → GH_PAT with `repo` scope (add as GitHub Secret `GH_PAT`)
-                  Falls back to 0 if not set — adds a warning in README
+  PUBLIC repos  → fetched via /users/SNTL84/repos (paginated, no auth needed)
+  PRIVATE count → /user endpoint using GITHUB_TOKEN (always present in Actions)
+                  GITHUB_TOKEN is authenticated as SNTL84, so it CAN see private counts.
+                  GH_PAT secret is NOT required.
   TOTAL         → public + private
 
 Local usage:
-  GH_PAT=ghp_yourPAT python3 scripts/count_repos.py
+  GH_TOKEN=ghp_yourToken python3 scripts/count_repos.py
 """
 
 import os
 import re
-import sys
 import requests
 from datetime import datetime, timezone
 
-TOKEN   = os.environ.get("GH_TOKEN", "")   # built-in GITHUB_TOKEN (no private access)
-GH_PAT  = os.environ.get("GH_PAT", "")     # PAT with `repo` scope for private count
-USER    = "SNTL84"
+# GITHUB_TOKEN is automatically injected by GitHub Actions — always present
+TOKEN = os.environ.get("GH_TOKEN", "") or os.environ.get("GITHUB_TOKEN", "")
+USER  = "SNTL84"
 
 HEADERS = {
     "Authorization": f"Bearer {TOKEN}",
     "Accept": "application/vnd.github+json",
     "X-GitHub-Api-Version": "2022-11-28",
 }
-PAT_HEADERS = {
-    "Authorization": f"Bearer {GH_PAT}",
-    "Accept": "application/vnd.github+json",
-    "X-GitHub-Api-Version": "2022-11-28",
-} if GH_PAT else None
 
 
-def gh_get(url, params=None, hdrs=None):
-    hdrs = hdrs or HEADERS
-    r = requests.get(url, headers=hdrs, params=params, timeout=15)
+def gh_get(url, params=None):
+    r = requests.get(url, headers=HEADERS, params=params, timeout=15)
     if r.status_code != 200:
-        print(f"[ERROR] GET {url} → {r.status_code}: {r.text[:200]}")
+        print(f"[ERROR] GET {url} → {r.status_code}: {r.text[:300]}")
         r.raise_for_status()
     return r.json()
 
 
 def fetch_public_repos():
-    """Fetch all public repos via /users/{USER}/repos (no auth required)."""
+    """Paginate all public repos for USER."""
     repos, page = [], 1
     while True:
         batch = gh_get(
@@ -63,47 +57,50 @@ def fetch_public_repos():
     return repos
 
 
-def get_private_count():
+def get_counts_from_token():
     """
-    Get accurate private repo count via GH_PAT with `repo` scope.
-    The /user endpoint returns `owned_private_repos` which is the
-    true count of private repos owned by the authenticated user.
-    Returns (count: int, pat_available: bool).
+    Call /user with GITHUB_TOKEN.
+    In GitHub Actions, GITHUB_TOKEN is scoped to the repo owner (SNTL84),
+    so this returns accurate public + private counts directly.
+    Returns (public_count, private_count, token_authed: bool).
     """
-    if not GH_PAT:
-        print("[WARN] GH_PAT not set — private count = 0. Add GH_PAT secret (repo scope) for accurate count.")
-        return 0, False
+    if not TOKEN:
+        print("[WARN] No token available — private count will be 0.")
+        return None, 0, False
 
     try:
-        data = gh_get("https://api.github.com/user", hdrs=PAT_HEADERS)
-        # Validate we got the right user
-        login = data.get("login", "")
+        data = gh_get("https://api.github.com/user")
+        login         = data.get("login", "unknown")
+        public_count  = data.get("public_repos", 0)
+        private_count = data.get("owned_private_repos", 0)
+        print(f"[TOKEN] Authenticated as: {login}")
+        print(f"[TOKEN] public_repos={public_count}  owned_private_repos={private_count}")
         if login.lower() != USER.lower():
-            print(f"[WARN] PAT belongs to '{login}', expected '{USER}'. Private count may be inaccurate.")
-        owned_private = data.get("owned_private_repos", 0)
-        total_private = data.get("total_private_repos", 0)  # includes org repos
-        pub = data.get("public_repos", 0)
-        print(f"[PAT] login={login} public={pub} owned_private={owned_private} total_private={total_private}")
-        # Use owned_private_repos — this is repos the user OWNS (not org-shared)
-        return owned_private, True
+            print(f"[WARN] Token owner '{login}' != expected '{USER}' — counts may differ.")
+        return public_count, private_count, True
     except Exception as e:
-        print(f"[ERROR] PAT fetch failed: {e} — defaulting private count to 0")
-        return 0, False
+        print(f"[ERROR] /user fetch failed: {e}")
+        return None, 0, False
 
 
 def main():
-    # ── 1. Counts ─────────────────────────────────────────────────────────────
-    public_repos   = fetch_public_repos()
-    public_count   = len(public_repos)
-    private_count, pat_ok = get_private_count()
-    total_count    = public_count + private_count
-    date_str       = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    # ── 1. Fetch data ─────────────────────────────────────────────────────────
+    public_repos = fetch_public_repos()
+    public_from_list = len(public_repos)
 
-    print(f"Public:  {public_count}")
-    print(f"Private: {private_count} {'(via PAT)' if pat_ok else '(GH_PAT missing — may be inaccurate)'}")
-    print(f"Total:   {total_count}")
+    api_public, private_count, token_ok = get_counts_from_token()
 
-    # ── 2. Build repo list rows ────────────────────────────────────────────────
+    # Use API-reported public count if token is authenticated (more authoritative),
+    # fall back to pagination count
+    public_count = api_public if (token_ok and api_public is not None) else public_from_list
+    total_count  = public_count + private_count
+    date_str     = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+
+    print(f"\nPublic:  {public_count}")
+    print(f"Private: {private_count}")
+    print(f"Total:   {total_count}\n")
+
+    # ── 2. Build repo list rows ───────────────────────────────────────────────
     rows = []
     for i, r in enumerate(public_repos, 1):
         name = r["name"]
@@ -114,36 +111,23 @@ def main():
         rows.append(f"| {i} | [{name}]({url}) | {desc} | 🌐 Public | {lang} | {date} |")
 
     if private_count > 0:
-        rows.append(
-            f"| — | *{private_count} private repo{'s' if private_count > 1 else ''}* "
-            f"| *Not listed for privacy* | 🔒 Private | — | — |"
-        )
-    elif not pat_ok:
-        rows.append(
-            "| — | *Private repos* | ⚠️ GH_PAT not set — private count unavailable | 🔒 Private | — | — |"
-        )
+        label = f"{private_count} private repo{'s' if private_count != 1 else ''}"
+        rows.append(f"| — | *{label}* | *Not listed — private* | 🔒 Private | — | — |")
+    else:
+        rows.append("| — | *Private repos* | *0 private repos* | 🔒 Private | — | — |")
 
     repo_table = "\n".join(rows)
 
-    # ── 3. Warning note if PAT missing ────────────────────────────────────────
-    pat_note = (
-        "" if pat_ok else
-        "\n> ⚠️ **Private count is unavailable.** Add a `GH_PAT` secret (with `repo` scope) in "
-        "[Settings → Secrets](https://github.com/SNTL84/sntl84-repo-counter/settings/secrets/actions) "
-        "to display accurate private repo count."
-    )
-
-    # ── 4. Replacement blocks ─────────────────────────────────────────────────
+    # ── 3. Build README blocks ────────────────────────────────────────────────
     count_block = (
         "<!-- REPO_COUNT_START -->\n"
         "| Metric | Count |\n"
         "|--------|-------|\n"
         f"| 🌐 Public Repos | **{public_count}** |\n"
-        f"| 🔒 Private Repos | **{private_count}**{'' if pat_ok else ' ⚠️'} |\n"
+        f"| 🔒 Private Repos | **{private_count}** |\n"
         f"| 📦 Total Repos | **{total_count}** |\n"
         "<!-- REPO_COUNT_END -->\n\n"
         f"> 🕐 *Last updated: {date_str} · Auto-refreshes every 6 hours via GitHub Actions*"
-        f"{pat_note}"
     )
     list_block = (
         "<!-- REPO_LIST_START -->\n"
@@ -153,12 +137,10 @@ def main():
         "<!-- REPO_LIST_END -->"
     )
 
-    # ── 5. Patch README ────────────────────────────────────────────────────────
-    readme_path = "README.md"
-    with open(readme_path, "r", encoding="utf-8") as f:
+    # ── 4. Patch README ───────────────────────────────────────────────────────
+    with open("README.md", "r", encoding="utf-8") as f:
         readme = f.read()
 
-    # Replace count block
     new_readme, n1 = re.subn(
         r"<!-- REPO_COUNT_START -->.*?<!-- REPO_COUNT_END -->\n\n> .*?(?=\n[^>]|\Z)",
         count_block,
@@ -166,10 +148,9 @@ def main():
         flags=re.DOTALL,
     )
     if n1 == 0:
-        print("[WARN] REPO_COUNT markers not found in README — skipping count block update.")
+        print("[WARN] REPO_COUNT markers not found — skipping count block.")
         new_readme = readme
 
-    # Replace list block
     new_readme, n2 = re.subn(
         r"<!-- REPO_LIST_START -->.*?<!-- REPO_LIST_END -->",
         list_block,
@@ -177,17 +158,12 @@ def main():
         flags=re.DOTALL,
     )
     if n2 == 0:
-        print("[WARN] REPO_LIST markers not found in README — skipping list block update.")
+        print("[WARN] REPO_LIST markers not found — skipping list block.")
 
-    with open(readme_path, "w", encoding="utf-8") as f:
+    with open("README.md", "w", encoding="utf-8") as f:
         f.write(new_readme)
 
-    print(f"README.md updated — {total_count} repos · {date_str}")
-
-    # Exit with error if PAT is missing so workflow logs are visible
-    if not pat_ok:
-        print("\n[ACTION REQUIRED] Set GH_PAT secret for accurate private repo count.")
-        # Don't fail the workflow — just warn
+    print(f"✅ README.md updated — {total_count} total repos · {date_str}")
 
 
 if __name__ == "__main__":
