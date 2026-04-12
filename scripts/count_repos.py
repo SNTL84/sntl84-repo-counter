@@ -6,22 +6,21 @@ Milan · SNTL 84 · desidevloper.com
 I Automate What's Costing You Money.
 
 How counts work:
-  PUBLIC repos  → fetched via /users/SNTL84/repos (paginated, no auth needed)
-  PRIVATE count → /user endpoint using GITHUB_TOKEN (always present in Actions)
-                  GITHUB_TOKEN is authenticated as SNTL84, so it CAN see private counts.
-                  GH_PAT secret is NOT required.
+  PUBLIC repos  → GraphQL viewer.repositories(privacy: PUBLIC)
+  PRIVATE count → GraphQL viewer.repositories(privacy: PRIVATE)
+  GITHUB_TOKEN (built-in Actions token) has the `repo` scope by default
+  when the workflow sets `permissions: contents: write` — this IS enough
+  for GraphQL viewer queries scoped to the authenticated user.
   TOTAL         → public + private
 
 Local usage:
   GH_TOKEN=ghp_yourToken python3 scripts/count_repos.py
 """
-
 import os
 import re
 import requests
 from datetime import datetime, timezone
 
-# GITHUB_TOKEN is automatically injected by GitHub Actions — always present
 TOKEN = os.environ.get("GH_TOKEN", "") or os.environ.get("GITHUB_TOKEN", "")
 USER  = "SNTL84"
 
@@ -31,104 +30,133 @@ HEADERS = {
     "X-GitHub-Api-Version": "2022-11-28",
 }
 
+GRAPHQL_URL = "https://api.github.com/graphql"
 
-def gh_get(url, params=None):
-    r = requests.get(url, headers=HEADERS, params=params, timeout=15)
+
+def graphql(query, variables=None):
+    payload = {"query": query}
+    if variables:
+        payload["variables"] = variables
+    r = requests.post(GRAPHQL_URL, json=payload, headers=HEADERS, timeout=15)
     if r.status_code != 200:
-        print(f"[ERROR] GET {url} → {r.status_code}: {r.text[:300]}")
+        print(f"[ERROR] GraphQL {r.status_code}: {r.text[:300]}")
         r.raise_for_status()
-    return r.json()
+    data = r.json()
+    if "errors" in data:
+        print(f"[ERROR] GraphQL errors: {data['errors']}")
+        raise RuntimeError("GraphQL error")
+    return data["data"]
 
 
-def fetch_public_repos():
-    """Paginate all public repos for USER."""
-    repos, page = [], 1
-    while True:
-        batch = gh_get(
-            f"https://api.github.com/users/{USER}/repos",
-            params={"per_page": 100, "page": page, "sort": "updated"},
-        )
-        if not batch:
-            break
-        repos.extend(batch)
-        if len(batch) < 100:
-            break
-        page += 1
-    return repos
-
-
-def get_counts_from_token():
+def get_all_counts():
     """
-    Call /user with GITHUB_TOKEN.
-    In GitHub Actions, GITHUB_TOKEN is scoped to the repo owner (SNTL84),
-    so this returns accurate public + private counts directly.
-    Returns (public_count, private_count, token_authed: bool).
+    Use GraphQL viewer query — works with GITHUB_TOKEN in Actions
+    when workflow has `permissions: contents: write`.
+    Returns (public_count, private_count, public_repos_list).
     """
-    if not TOKEN:
-        print("[WARN] No token available — private count will be 0.")
-        return None, 0, False
+    query = """
+    query($cursor: String) {
+      viewer {
+        login
+        publicRepos: repositories(privacy: PUBLIC, first: 100, after: $cursor, ownerAffiliations: OWNER) {
+          totalCount
+          pageInfo { hasNextPage endCursor }
+          nodes {
+            name
+            url
+            description
+            primaryLanguage { name }
+            updatedAt
+            isPrivate
+          }
+        }
+        privateRepos: repositories(privacy: PRIVATE, ownerAffiliations: OWNER) {
+          totalCount
+        }
+      }
+    }
+    """
+    # First page
+    data = graphql(query)
+    viewer = data["viewer"]
+    login = viewer["login"]
+    print(f"[GraphQL] Authenticated as: {login}")
 
-    try:
-        data = gh_get("https://api.github.com/user")
-        login         = data.get("login", "unknown")
-        public_count  = data.get("public_repos", 0)
-        private_count = data.get("owned_private_repos", 0)
-        print(f"[TOKEN] Authenticated as: {login}")
-        print(f"[TOKEN] public_repos={public_count}  owned_private_repos={private_count}")
-        if login.lower() != USER.lower():
-            print(f"[WARN] Token owner '{login}' != expected '{USER}' — counts may differ.")
-        return public_count, private_count, True
-    except Exception as e:
-        print(f"[ERROR] /user fetch failed: {e}")
-        return None, 0, False
+    public_total = viewer["publicRepos"]["totalCount"]
+    private_total = viewer["privateRepos"]["totalCount"]
+    public_repos = list(viewer["publicRepos"]["nodes"])
+    page_info = viewer["publicRepos"]["pageInfo"]
+
+    # Paginate public repos if needed
+    while page_info["hasNextPage"]:
+        page_query = """
+        query($cursor: String) {
+          viewer {
+            publicRepos: repositories(privacy: PUBLIC, first: 100, after: $cursor, ownerAffiliations: OWNER) {
+              pageInfo { hasNextPage endCursor }
+              nodes {
+                name
+                url
+                description
+                primaryLanguage { name }
+                updatedAt
+                isPrivate
+              }
+            }
+          }
+        }
+        """
+        page_data = graphql(page_query, {"cursor": page_info["endCursor"]})
+        batch = page_data["viewer"]["publicRepos"]
+        public_repos.extend(batch["nodes"])
+        page_info = batch["pageInfo"]
+
+    print(f"[GraphQL] Public: {public_total}  Private: {private_total}")
+    return public_total, private_total, public_repos
 
 
 def main():
-    # ── 1. Fetch data ─────────────────────────────────────────────────────────
-    public_repos = fetch_public_repos()
-    public_from_list = len(public_repos)
+    if not TOKEN:
+        print("[WARN] No token — cannot fetch counts.")
+        return
 
-    api_public, private_count, token_ok = get_counts_from_token()
-
-    # Use API-reported public count if token is authenticated (more authoritative),
-    # fall back to pagination count
-    public_count = api_public if (token_ok and api_public is not None) else public_from_list
-    total_count  = public_count + private_count
-    date_str     = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    public_count, private_count, public_repos = get_all_counts()
+    total_count = public_count + private_count
+    date_str = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 
     print(f"\nPublic:  {public_count}")
     print(f"Private: {private_count}")
     print(f"Total:   {total_count}\n")
 
-    # ── 2. Build repo list rows ───────────────────────────────────────────────
+    # Build repo list rows (public only, private not listed)
     rows = []
     for i, r in enumerate(public_repos, 1):
         name = r["name"]
-        url  = r["html_url"]
-        desc = (r.get("description") or "—")[:90].replace("|", "｜")
-        lang = r.get("language") or "—"
-        date = (r.get("updated_at") or "")[:10]
-        rows.append(f"| {i} | [{name}]({url}) | {desc} | 🌐 Public | {lang} | {date} |")
+        url  = r["url"]
+        desc = (r.get("description") or "\u2014")[:90].replace("|", "\uff5c")
+        lang = (r.get("primaryLanguage") or {}).get("name") or "\u2014"
+        date = (r.get("updatedAt") or "")[:10]
+        rows.append(f"| {i} | [{name}]({url}) | {desc} | \U0001f310 Public | {lang} | {date} |")
 
     if private_count > 0:
         label = f"{private_count} private repo{'s' if private_count != 1 else ''}"
-        rows.append(f"| — | *{label}* | *Not listed — private* | 🔒 Private | — | — |")
+        rows.append(f"| \u2014 | *{label}* | *Not listed \u2014 private* | \U0001f512 Private | \u2014 | \u2014 |")
     else:
-        rows.append("| — | *Private repos* | *0 private repos* | 🔒 Private | — | — |")
+        rows.append("| \u2014 | *Private repos* | *0 private repos* | \U0001f512 Private | \u2014 | \u2014 |")
 
     repo_table = "\n".join(rows)
 
-    # ── 3. Build README blocks ────────────────────────────────────────────────
     count_block = (
         "<!-- REPO_COUNT_START -->\n"
         "| Metric | Count |\n"
         "|--------|-------|\n"
-        f"| 🌐 Public Repos | **{public_count}** |\n"
-        f"| 🔒 Private Repos | **{private_count}** |\n"
-        f"| 📦 Total Repos | **{total_count}** |\n"
+        f"| \U0001f310 Public Repos  | **{public_count}** |\n"
+        f"| \U0001f512 Private Repos | **{private_count}** |\n"
+        f"| \U0001f4e6 Total Repos   | **{total_count}** |\n"
         "<!-- REPO_COUNT_END -->\n\n"
-        f"> 🕐 *Last updated: {date_str} · Auto-refreshes every 6 hours via GitHub Actions*"
+        f"> \U0001f550 *Last updated: {date_str} \u00b7 Auto-refreshes every 6 hours via GitHub Actions*"
     )
+
     list_block = (
         "<!-- REPO_LIST_START -->\n"
         "| # | Repository | Description | Type | Language | Updated |\n"
@@ -137,7 +165,6 @@ def main():
         "<!-- REPO_LIST_END -->"
     )
 
-    # ── 4. Patch README ───────────────────────────────────────────────────────
     with open("README.md", "r", encoding="utf-8") as f:
         readme = f.read()
 
@@ -148,7 +175,7 @@ def main():
         flags=re.DOTALL,
     )
     if n1 == 0:
-        print("[WARN] REPO_COUNT markers not found — skipping count block.")
+        print("[WARN] REPO_COUNT markers not found.")
         new_readme = readme
 
     new_readme, n2 = re.subn(
@@ -158,12 +185,12 @@ def main():
         flags=re.DOTALL,
     )
     if n2 == 0:
-        print("[WARN] REPO_LIST markers not found — skipping list block.")
+        print("[WARN] REPO_LIST markers not found.")
 
     with open("README.md", "w", encoding="utf-8") as f:
         f.write(new_readme)
 
-    print(f"✅ README.md updated — {total_count} total repos · {date_str}")
+    print(f"\u2705 README.md updated \u2014 {total_count} total repos \u00b7 {date_str}")
 
 
 if __name__ == "__main__":
