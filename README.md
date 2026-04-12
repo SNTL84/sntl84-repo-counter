@@ -13,12 +13,11 @@
 | Metric | Count |
 |--------|-------|
 | 🌐 Public Repos | **12** |
-| 🔒 Private Repos | **0** ⚠️ |
+| 🔒 Private Repos | **0** |
 | 📦 Total Repos | **12** |
 <!-- REPO_COUNT_END -->
 
-> 🕐 *Last updated: 2026-04-12 06:07 UTC · Auto-refreshes every 6 hours via GitHub Actions*
-> ⚠️ **Private count is unavailable.** Add a `GH_PAT` secret (with `repo` scope) in [Settings → Secrets](https://github.com/SNTL84/sntl84-repo-counter/settings/secrets/actions) to display accurate private repo count.
+> 🕐 *Last updated: 2026-04-12 06:09 UTC · Auto-refreshes every 6 hours via GitHub Actions*
 
 ---
 
@@ -52,7 +51,7 @@
 | 10 | [sntl84-superpowers](https://github.com/SNTL84/sntl84-superpowers) | An agentic skills framework & software development methodology that works. | 🌐 Public | Shell | 2026-03-30 |
 | 11 | [linkedin-activity-archive](https://github.com/SNTL84/linkedin-activity-archive) | Complete LinkedIn activity archive for SNTL2784 - Posts, reposts, media links, analytics | 🌐 Public | — | 2026-03-30 |
 | 12 | [ai-studio-99page-generator](https://github.com/SNTL84/ai-studio-99page-generator) | 99 Page in 3 prompts | 🌐 Public | TypeScript | 2026-03-30 |
-| — | *Private repos* | ⚠️ GH_PAT not set — private count unavailable | 🔒 Private | — | — |
+| — | *Private repos* | *0 private repos* | 🔒 Private | — | — |
 <!-- REPO_LIST_END -->
 
 ---
