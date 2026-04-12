@@ -30,13 +30,13 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install requests
+      - name: Install dependencies
         run: pip install requests
 
       - name: Run repo counter & update README
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GH_PAT: ${{ secrets.GH_PAT }}   # PAT with repo scope — add in Settings > Secrets
+          GH_PAT: ${{ secrets.GH_PAT }}   # PAT with `repo` scope — add in Settings > Secrets
         run: python scripts/count_repos.py
 
       - name: Commit & push if README changed
