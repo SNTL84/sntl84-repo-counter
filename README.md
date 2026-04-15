@@ -33,7 +33,7 @@
 <!-- REPO_COUNT_END -->
 
 <!-- TIMESTAMP_START -->
-> 🕐 *Last updated: **15 Apr 2026 · 07:16 UTC** · Auto-refreshes every 6 hours via GitHub Actions*
+> 🕐 *Last updated: **15 Apr 2026 · 08:40 UTC** · Auto-refreshes every 6 hours via GitHub Actions*
 <!-- TIMESTAMP_END -->
 
 ---
@@ -89,7 +89,7 @@ AI automation · Full-stack web · Workflow orchestration · Zero-bloat delivery
 | 14 | [ai-hiring-intel](https://github.com/SNTL84/ai-hiring-intel) | AI Hiring Intelligence System — Strict, business-focused resume evaluator. Built by M | 🎨 CSS | ⭐1 | — | 2026-04-10 |
 | 15 | [real-estate-claude-agent](https://github.com/SNTL84/real-estate-claude-agent) | AI-powered property valuation & investment analysis for Surat, Gujarat — SNTL84 Frame | 🔷 TS | — | — | 2026-04-09 |
 | 16 | [sntl84-superpowers](https://github.com/SNTL84/sntl84-superpowers) | An agentic skills framework & software development methodology that works. | 🐚 Shell | — | — | 2026-03-30 |
-| — | *Private repos* | *0 private repos (or GH_PAT not set)* | 🔒 Private | — | — | — |
+| — | *Private repos* | *0 detected — add GH_PAT secret (repo scope) if you have private repos* | 🔒 Private | — | — | — |
 <!-- REPO_LIST_END -->
 
 ---
