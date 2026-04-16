@@ -24,16 +24,16 @@
 <!-- REPO_COUNT_START -->
 | Metric | Count | Details |
 |--------|-------|---------|
-| 🌐 Public Repos  | **16** | All public repositories |
+| 🌐 Public Repos  | **18** | All public repositories |
 | 🔒 Private Repos | **0** | Requires `GH_PAT` secret (repo scope) for accuracy |
-| 📦 Total Repos   | **16** | Public + Private |
-| ⭐ Total Stars   | **10** | Across all public repos |
+| 📦 Total Repos   | **18** | Public + Private |
+| ⭐ Total Stars   | **11** | Across all public repos |
 | 🍴 Total Forks   | **0** | Across all public repos |
-| 🏆 Top Language  | **HTML** | 6 repos |
+| 🏆 Top Language  | **HTML** | 8 repos |
 <!-- REPO_COUNT_END -->
 
 <!-- TIMESTAMP_START -->
-> 🕐 *Last updated: **16 Apr 2026 · 13:00 UTC** · Auto-refreshes every 6 hours via GitHub Actions*
+> 🕐 *Last updated: **16 Apr 2026 · 18:55 UTC** · Auto-refreshes every 6 hours via GitHub Actions*
 <!-- TIMESTAMP_END -->
 
 ---
@@ -73,22 +73,24 @@ AI automation · Full-stack web · Workflow orchestration · Zero-bloat delivery
 <!-- REPO_LIST_START -->
 | # | Repository | Description | Language | ⭐ | 🍴 | Updated |
 |---|------------|-------------|----------|----|----|---------|
-| 1 | [sntl84-repo-counter](https://github.com/SNTL84/sntl84-repo-counter) | 🔢 Auto-updating repo counter for SNTL84 · Milan · desidevloper.com — live count of al | 🌐 HTML | ⭐1 | — | 2026-04-16 |
-| 2 | [Agentic-Recruit-Screening](https://github.com/SNTL84/Agentic-Recruit-Screening) | 🤖 AI-Powered Recruitment Screening Module ｜ Automate What's Costing You Money ｜ Reduc | 🌐 HTML | — | — | 2026-04-14 |
-| 3 | [ai-studio-99page-generator](https://github.com/SNTL84/ai-studio-99page-generator) | 99 Page in 3 prompts | 🔷 TS | ⭐1 | — | 2026-04-14 |
-| 4 | [linkedin-activity-archive](https://github.com/SNTL84/linkedin-activity-archive) | Complete LinkedIn activity archive for SNTL2784 - Posts, reposts, media links, analyt | — | ⭐1 | — | 2026-04-14 |
-| 5 | [desidevloper-services-page](https://github.com/SNTL84/desidevloper-services-page) | Desi devloper Services page  | — | ⭐1 | — | 2026-04-14 |
-| 6 | [sntl84-hiring-system](https://github.com/SNTL84/sntl84-hiring-system) | AI-Powered Hiring System — Smart Job Board & Candidate Portal by SNTL 84 ｜ Vercel-Rea | — | ⭐1 | — | 2026-04-14 |
-| 7 | [shiv-gujarati-thali](https://github.com/SNTL84/shiv-gujarati-thali) | 🍽️ Full-stack digital presence for Shiv Gujarati Unlimited Thali, Surat — Landing pag | 🐚 Shell | — | — | 2026-04-14 |
-| 8 | [ai-lead-enrichment-agent](https://github.com/SNTL84/ai-lead-enrichment-agent) | 🚀 AI Lead Enrichment Agent – Enrich startup leads with founder names, funding stages, | 🌐 HTML | — | — | 2026-04-12 |
-| 9 | [python-foundations-projects](https://github.com/SNTL84/python-foundations-projects) | 🐍 Python Foundations — CLI Projects by Milan · SNTL 84 ｜ I Automate What's Costing Yo | 🐍 Python | — | — | 2026-04-12 |
-| 10 | [developer-profile-journey](https://github.com/SNTL84/developer-profile-journey) | Automate What's Costing You Money. SNTL 84 Developer Profile + Python Journey Tracker | 🌐 HTML | ⭐1 | — | 2026-04-10 |
-| 11 | [desi-quote](https://github.com/SNTL84/desi-quote) | ⚡ DesiQuote — Instant Gig Quote Calculator by Milan · SNTL 84 · desidevloper.com ｜ AI | 🌐 HTML | ⭐1 | — | 2026-04-10 |
-| 12 | [sntl84-backoffice-os](https://github.com/SNTL84/sntl84-backoffice-os) | 🏢 BACKOFFICE OS v2.0 — A small utility HR back-office dashboard. Attendance, payroll, | 🌐 HTML | ⭐1 | — | 2026-04-10 |
-| 13 | [SNTL84](https://github.com/SNTL84/SNTL84) | — | — | ⭐1 | — | 2026-04-10 |
-| 14 | [ai-hiring-intel](https://github.com/SNTL84/ai-hiring-intel) | AI Hiring Intelligence System — Strict, business-focused resume evaluator. Built by M | 🎨 CSS | ⭐1 | — | 2026-04-10 |
-| 15 | [real-estate-claude-agent](https://github.com/SNTL84/real-estate-claude-agent) | AI-powered property valuation & investment analysis for Surat, Gujarat — SNTL84 Frame | 🔷 TS | — | — | 2026-04-09 |
-| 16 | [sntl84-superpowers](https://github.com/SNTL84/sntl84-superpowers) | An agentic skills framework & software development methodology that works. | 🐚 Shell | — | — | 2026-03-30 |
+| 1 | [megait-stores-client](https://github.com/SNTL84/megait-stores-client) | 🖥️ MEGA IT STORES — Full Client Digital Package ｜ Product Catalog + Digital Marketing | 🌐 HTML | — | — | 2026-04-16 |
+| 2 | [sntl84-service-catalog-v1](https://github.com/SNTL84/sntl84-service-catalog-v1) | services pages concept | 🌐 HTML | ⭐1 | — | 2026-04-16 |
+| 3 | [sntl84-dev-profile](https://github.com/SNTL84/sntl84-dev-profile) | Automate What's Costing You Money. SNTL 84 Developer Profile + Python Journey Tracker | 🌐 HTML | ⭐1 | — | 2026-04-16 |
+| 4 | [sntl84-agentic-recruiter](https://github.com/SNTL84/sntl84-agentic-recruiter) | 🤖 AI-Powered Recruitment Screening Module ｜ Automate What's Costing You Money ｜ Reduc | 🌐 HTML | — | — | 2026-04-16 |
+| 5 | [sntl84-repo-counter](https://github.com/SNTL84/sntl84-repo-counter) | 🔢 Auto-updating repo counter for SNTL84 · Milan · desidevloper.com — live count of al | 🌐 HTML | ⭐1 | — | 2026-04-16 |
+| 6 | [ai-studio-99page-generator](https://github.com/SNTL84/ai-studio-99page-generator) | 99 Page in 3 prompts | 🔷 TS | ⭐1 | — | 2026-04-14 |
+| 7 | [linkedin-activity-archive](https://github.com/SNTL84/linkedin-activity-archive) | Complete LinkedIn activity archive for SNTL2784 - Posts, reposts, media links, analyt | — | ⭐1 | — | 2026-04-14 |
+| 8 | [desidevloper-services-page](https://github.com/SNTL84/desidevloper-services-page) | Desi devloper Services page  | — | ⭐1 | — | 2026-04-14 |
+| 9 | [sntl84-hiring-system](https://github.com/SNTL84/sntl84-hiring-system) | AI-Powered Hiring System — Smart Job Board & Candidate Portal by SNTL 84 ｜ Vercel-Rea | — | ⭐1 | — | 2026-04-14 |
+| 10 | [shiv-gujarati-thali](https://github.com/SNTL84/shiv-gujarati-thali) | 🍽️ Full-stack digital presence for Shiv Gujarati Unlimited Thali, Surat — Landing pag | 🐚 Shell | — | — | 2026-04-14 |
+| 11 | [ai-lead-enrichment-agent](https://github.com/SNTL84/ai-lead-enrichment-agent) | 🚀 AI Lead Enrichment Agent – Enrich startup leads with founder names, funding stages, | 🌐 HTML | — | — | 2026-04-12 |
+| 12 | [python-foundations-projects](https://github.com/SNTL84/python-foundations-projects) | 🐍 Python Foundations — CLI Projects by Milan · SNTL 84 ｜ I Automate What's Costing Yo | 🐍 Python | — | — | 2026-04-12 |
+| 13 | [desi-quote](https://github.com/SNTL84/desi-quote) | ⚡ DesiQuote — Instant Gig Quote Calculator by Milan · SNTL 84 · desidevloper.com ｜ AI | 🌐 HTML | ⭐1 | — | 2026-04-10 |
+| 14 | [sntl84-backoffice-os](https://github.com/SNTL84/sntl84-backoffice-os) | 🏢 BACKOFFICE OS v2.0 — A small utility HR back-office dashboard. Attendance, payroll, | 🌐 HTML | ⭐1 | — | 2026-04-10 |
+| 15 | [SNTL84](https://github.com/SNTL84/SNTL84) | — | — | ⭐1 | — | 2026-04-10 |
+| 16 | [ai-hiring-intel](https://github.com/SNTL84/ai-hiring-intel) | AI Hiring Intelligence System — Strict, business-focused resume evaluator. Built by M | 🎨 CSS | ⭐1 | — | 2026-04-10 |
+| 17 | [real-estate-claude-agent](https://github.com/SNTL84/real-estate-claude-agent) | AI-powered property valuation & investment analysis for Surat, Gujarat — SNTL84 Frame | 🔷 TS | — | — | 2026-04-09 |
+| 18 | [sntl84-superpowers](https://github.com/SNTL84/sntl84-superpowers) | An agentic skills framework & software development methodology that works. | 🐚 Shell | — | — | 2026-03-30 |
 | — | *Private repos* | *0 detected — add GH_PAT secret (repo scope) if you have private repos* | 🔒 Private | — | — | — |
 <!-- REPO_LIST_END -->
 
