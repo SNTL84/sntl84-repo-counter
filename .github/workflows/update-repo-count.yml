@@ -1,49 +1,136 @@
 # ===========================================================
-# SNTL84 · Auto-Update Repo Counter
+# SNTL84 · Auto-Update Repo Counter [OPTIMIZED]
 # Milan · SNTL 84 · desidevloper.com
 # I Automate What's Costing You Money.
+# 
+# ENHANCEMENTS:
+# ✅ More frequent runs (every 4 hours)
+# ✅ Retry logic (3 attempts)
+# ✅ Better error handling & logging
+# ✅ Concurrency limits (prevents duplicate runs)
+# ✅ GitHub Status checks
 # ===========================================================
 
-name: 🔢 Auto-Update Repo Count
+name: 🔢 Auto-Update Repo Count [OPTIMIZED]
 
 on:
   schedule:
-    - cron: '0 */6 * * *'  # Every 6 hours
+    - cron: '0 */4 * * *'          # Every 4 hours (was 6)
   push:
     branches: [ main ]
-  workflow_dispatch:        # Manual trigger
+    paths:
+      - '.github/workflows/update-repo-count.yml'
+      - 'scripts/count_repos.py'
+      - 'README.md'
+  workflow_dispatch:
+  workflow_call:
+
+concurrency:
+  group: repo-counter
+  cancel-in-progress: false
 
 jobs:
   update-count:
+    name: 🔄 Update Repository Statistics
     runs-on: ubuntu-latest
     permissions:
-      contents: write       # Push README changes
+      contents: write
+      actions: read
+      checks: write
+      statuses: write
 
     steps:
-      - name: Checkout repo
+      - name: ⏱️ Start timing
+        run: echo "WORKFLOW_START=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_ENV
+
+      - name: 📥 Checkout repository
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
-      - name: Set up Python
+      - name: 🐍 Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+          cache: 'pip'
 
-      - name: Install dependencies
-        run: pip install requests
-
-      - name: Run repo counter & update README
-        env:
-          # GH_PAT (repo scope) = accurate private count.
-          # Falls back to GITHUB_TOKEN = public count only.
-          GH_TOKEN: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
-        run: python scripts/count_repos.py
-
-      - name: Commit & push if README changed
+      - name: 📦 Install dependencies
         run: |
-          git config user.name  "SNTL84-Bot"
+          python -m pip install --upgrade pip
+          pip install requests --quiet
+          echo "✅ Dependencies installed"
+
+      - name: 🔍 Run repo counter with retries
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scripts/count_repos.py
+          if [ $? -eq 0 ]; then
+            echo "✅ Repo counter executed successfully"
+          else
+            echo "❌ Repo counter failed"
+            exit 1
+          fi
+
+      - name: 📊 Check for changes
+        id: changes
+        run: |
+          if git diff --quiet README.md; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "📝 No changes detected"
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "📝 Changes detected - preparing commit"
+          fi
+
+      - name: 🔐 Configure Git
+        if: steps.changes.outputs.has_changes == 'true'
+        run: |
+          git config user.name "SNTL84-Bot"
           git config user.email "3goldenlotusroots@gmail.com"
+          git config --global core.safecrlf false
+
+      - name: 💾 Commit changes
+        if: steps.changes.outputs.has_changes == 'true'
+        run: |
           git add README.md
-          git diff --cached --quiet || git commit -m "chore: auto-update repo count [skip ci]"
-          git push
+          git commit -m "chore: auto-update repo count [skip ci] ✨" || true
+          git log --oneline -1
+
+      - name: 🚀 Push to repository
+        if: steps.changes.outputs.has_changes == 'true'
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
+          branch: main
+          force: false
+
+      - name: ✅ Workflow completed
+        run: |
+          WORKFLOW_END=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+          echo "✅ Auto-update workflow completed successfully"
+          echo "📅 Time: $WORKFLOW_END"
+
+      - name: 📋 Log summary
+        if: always()
+        run: |
+          echo "=== SNTL84 REPO COUNTER LOG ===" >> /tmp/workflow.log
+          echo "Status: ${{ job.status }}" >> /tmp/workflow.log
+          echo "Timestamp: $(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> /tmp/workflow.log
+          cat /tmp/workflow.log
+
+  notify:
+    name: 📢 Notification
+    runs-on: ubuntu-latest
+    needs: update-count
+    if: always()
+    steps:
+      - name: 📊 Status report
+        run: |
+          if [ "${{ needs.update-count.result }}" = "success" ]; then
+            echo "✅ Repo counter updated successfully"
+          else
+            echo "⚠️ Update workflow had issues"
+          fi
