@@ -30,11 +30,11 @@
 | 📦 Total Repos   | **45** | Public + Private |
 | ⭐ Total Stars   | **43** | Across all public repos |
 | 🍴 Total Forks   | **0** | Across all public repos |
-| 🏆 Top Language  | **HTML** | 16 repos |
+| 🏆 Top Language  | **HTML** | 17 repos |
 <!-- REPO_COUNT_END -->
 
 <!-- TIMESTAMP_START -->
-> 🕐 *Last updated: **06 May 2026 · 14:26 UTC** · Auto-refreshes every 4 hours via GitHub Actions*
+> 🕐 *Last updated: **06 May 2026 · 17:45 UTC** · Auto-refreshes every 4 hours via GitHub Actions*
 <!-- TIMESTAMP_END -->
 
 ---
@@ -119,8 +119,8 @@ git commit & push (auto)
 <!-- REPO_LIST_START -->
 | # | Repository | Description | Language | ⭐ | 🍴 | Updated |
 |---|------------|-------------|----------|----|----|---------|
-| 1 | [sntl84-repo-counter](https://github.com/SNTL84/sntl84-repo-counter) | 🔢 Auto-updating repo counter for SNTL84 · Milan · desidevloper.com — live count of al | 🌐 HTML | ⭐1 | — | 2026-05-06 |
-| 2 | [Tragad-Soni-Website-Roadmap](https://github.com/SNTL84/Tragad-Soni-Website-Roadmap) | 🚀 Complete Website Development Roadmap for Tragad Soni ｜ AI-Powered Automation ｜ Supp | 🟨 JS | ⭐1 | — | 2026-05-06 |
+| 1 | [Tragad-Soni-Website-Roadmap](https://github.com/SNTL84/Tragad-Soni-Website-Roadmap) | 🚀 Complete Website Development Roadmap for Tragad Soni ｜ AI-Powered Automation ｜ Supp | 🌐 HTML | ⭐1 | — | 2026-05-06 |
+| 2 | [sntl84-repo-counter](https://github.com/SNTL84/sntl84-repo-counter) | 🔢 Auto-updating repo counter for SNTL84 · Milan · desidevloper.com — live count of al | 🌐 HTML | ⭐1 | — | 2026-05-06 |
 | 3 | [sntl84-fmcg-lead-intel](https://github.com/SNTL84/sntl84-fmcg-lead-intel) | 🧠 FMCG Lead Intelligence Engine — n8n + Claude AI. Automates distributor outreach: sc | — | ⭐1 | — | 2026-05-04 |
 | 4 | [automate-what-costs-you](https://github.com/SNTL84/automate-what-costs-you) | 🚀 AI Automation Toolkit by Milan · SNTL 84 — Workflows, Bots & Business Intelligence  | 🌐 HTML | ⭐1 | — | 2026-05-04 |
 | 5 | [ai-frontend-projects](https://github.com/SNTL84/ai-frontend-projects) | 45 battle-tested AI frontend builds · real revenue targets · ship-ready code · OpenAI | 🌐 HTML | ⭐1 | — | 2026-05-03 |
