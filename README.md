@@ -28,13 +28,13 @@
 | 🌐 Public Repos  | **52** | All public repositories |
 | 🔒 Private Repos | **0** | Requires `GH_PAT` secret (repo scope) for accuracy |
 | 📦 Total Repos   | **52** | Public + Private |
-| ⭐ Total Stars   | **48** | Across all public repos |
+| ⭐ Total Stars   | **49** | Across all public repos |
 | 🍴 Total Forks   | **0** | Across all public repos |
 | 🏆 Top Language  | **HTML** | 19 repos |
 <!-- REPO_COUNT_END -->
 
 <!-- TIMESTAMP_START -->
-> 🕐 *Last updated: **31 May 2026 · 04:17 UTC** · Auto-refreshes every 4 hours via GitHub Actions*
+> 🕐 *Last updated: **31 May 2026 · 10:19 UTC** · Auto-refreshes every 4 hours via GitHub Actions*
 <!-- TIMESTAMP_END -->
 
 ---
@@ -119,16 +119,16 @@ git commit & push (auto)
 <!-- REPO_LIST_START -->
 | # | Repository | Description | Language | ⭐ | 🍴 | Updated |
 |---|------------|-------------|----------|----|----|---------|
-| 1 | [sntl84-repo-counter](https://github.com/SNTL84/sntl84-repo-counter) | 🔢 Auto-updating repo counter for SNTL84 · Milan · desidevloper.com — live count of al | 🌐 HTML | ⭐1 | — | 2026-05-30 |
-| 2 | [Tragad-Soni-Website-Roadmap](https://github.com/SNTL84/Tragad-Soni-Website-Roadmap) | 🚀 Complete Website Development Roadmap for Tragad Soni ｜ AI-Powered Automation ｜ Supp | 🌐 HTML | ⭐1 | — | 2026-05-30 |
-| 3 | [SNTL84](https://github.com/SNTL84/SNTL84) | — | — | ⭐1 | — | 2026-05-28 |
-| 4 | [MetroMate](https://github.com/SNTL84/MetroMate) | 🏢 ResidentialParkingManagementServices ｜ Automate What's Costing You Money ｜ SNTL 84  | 🌐 HTML | ⭐1 | — | 2026-05-28 |
-| 5 | [desidevloper-portfolio-nextjs](https://github.com/SNTL84/desidevloper-portfolio-nextjs) | 🚀 desidevloper.com — Next.js 14 + TypeScript + TailwindCSS + Framer Motion portfolio. | 🔷 TS | — | — | 2026-05-22 |
-| 6 | [SNTL84-Growth-Engine](https://github.com/SNTL84/SNTL84-Growth-Engine) | 🚀 SNTL 84 — Your Growth Engine ｜ Lead Gen • AI Automation • Fulfillment • Bench Resou | — | ⭐1 | — | 2026-05-21 |
-| 7 | [awesome-ai-sales-agents](https://github.com/SNTL84/awesome-ai-sales-agents) | A curated Awesome list of AI SDR and autonomous sales agent tools — for founders, sal | — | ⭐1 | — | 2026-05-21 |
-| 8 | [desidevloper](https://github.com/SNTL84/desidevloper) | DesiDeveloper - Full-stack React portfolio & trade directory platform with Vite, Reac | — | — | — | 2026-05-16 |
-| 9 | [sntl84-ecom-seo-optimization](https://github.com/SNTL84/sntl84-ecom-seo-optimization) | 🔎 Service 07 — eCommerce SEO Optimization ｜ Google Rank · On-Page · Technical SEO ｜ S | — | ⭐1 | — | 2026-05-15 |
-| 10 | [sntl84-agentic-recruiter](https://github.com/SNTL84/sntl84-agentic-recruiter) | 🤖 AI-Powered Recruitment Screening Module ｜ Automate What's Costing You Money ｜ Reduc | 🌐 HTML | ⭐1 | — | 2026-05-15 |
+| 1 | [sntl84-agentic-recruiter](https://github.com/SNTL84/sntl84-agentic-recruiter) | 🤖 AI-Powered Recruitment Screening Module ｜ Automate What's Costing You Money ｜ Reduc | 🌐 HTML | ⭐2 | — | 2026-05-31 |
+| 2 | [sntl84-repo-counter](https://github.com/SNTL84/sntl84-repo-counter) | 🔢 Auto-updating repo counter for SNTL84 · Milan · desidevloper.com — live count of al | 🌐 HTML | ⭐1 | — | 2026-05-31 |
+| 3 | [Tragad-Soni-Website-Roadmap](https://github.com/SNTL84/Tragad-Soni-Website-Roadmap) | 🚀 Complete Website Development Roadmap for Tragad Soni ｜ AI-Powered Automation ｜ Supp | 🌐 HTML | ⭐1 | — | 2026-05-30 |
+| 4 | [SNTL84](https://github.com/SNTL84/SNTL84) | — | — | ⭐1 | — | 2026-05-28 |
+| 5 | [MetroMate](https://github.com/SNTL84/MetroMate) | 🏢 ResidentialParkingManagementServices ｜ Automate What's Costing You Money ｜ SNTL 84  | 🌐 HTML | ⭐1 | — | 2026-05-28 |
+| 6 | [desidevloper-portfolio-nextjs](https://github.com/SNTL84/desidevloper-portfolio-nextjs) | 🚀 desidevloper.com — Next.js 14 + TypeScript + TailwindCSS + Framer Motion portfolio. | 🔷 TS | — | — | 2026-05-22 |
+| 7 | [SNTL84-Growth-Engine](https://github.com/SNTL84/SNTL84-Growth-Engine) | 🚀 SNTL 84 — Your Growth Engine ｜ Lead Gen • AI Automation • Fulfillment • Bench Resou | — | ⭐1 | — | 2026-05-21 |
+| 8 | [awesome-ai-sales-agents](https://github.com/SNTL84/awesome-ai-sales-agents) | A curated Awesome list of AI SDR and autonomous sales agent tools — for founders, sal | — | ⭐1 | — | 2026-05-21 |
+| 9 | [desidevloper](https://github.com/SNTL84/desidevloper) | DesiDeveloper - Full-stack React portfolio & trade directory platform with Vite, Reac | — | — | — | 2026-05-16 |
+| 10 | [sntl84-ecom-seo-optimization](https://github.com/SNTL84/sntl84-ecom-seo-optimization) | 🔎 Service 07 — eCommerce SEO Optimization ｜ Google Rank · On-Page · Technical SEO ｜ S | — | ⭐1 | — | 2026-05-15 |
 | 11 | [automate-what-costs-you](https://github.com/SNTL84/automate-what-costs-you) | 🚀 AI Automation Toolkit by Milan · SNTL 84 — Workflows, Bots & Business Intelligence  | 🌐 HTML | ⭐1 | — | 2026-05-15 |
 | 12 | [whatsapp-outreach-tool](https://github.com/SNTL84/whatsapp-outreach-tool) | ⚡ Zero-install WhatsApp Outreach Tool — Bulk contact management, custom messages, VCF | 🌐 HTML | ⭐1 | — | 2026-05-10 |
 | 13 | [sntl84-next-saas-stripe-starter](https://github.com/SNTL84/sntl84-next-saas-stripe-starter) | SaaS Starter with User Roles & Admin Panel — Private fork by SNTL 84 · Milan · Automa | 🔷 TS | ⭐1 | — | 2026-05-10 |
