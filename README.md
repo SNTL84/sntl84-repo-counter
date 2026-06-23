@@ -28,13 +28,13 @@
 | 🌐 Public Repos  | **54** | All public repositories |
 | 🔒 Private Repos | **0** | Requires `GH_PAT` secret (repo scope) for accuracy |
 | 📦 Total Repos   | **54** | Public + Private |
-| ⭐ Total Stars   | **50** | Across all public repos |
+| ⭐ Total Stars   | **52** | Across all public repos |
 | 🍴 Total Forks   | **0** | Across all public repos |
 | 🏆 Top Language  | **HTML** | 19 repos |
 <!-- REPO_COUNT_END -->
 
 <!-- TIMESTAMP_START -->
-> 🕐 *Last updated: **23 Jun 2026 · 18:02 UTC** · Auto-refreshes every 4 hours via GitHub Actions*
+> 🕐 *Last updated: **23 Jun 2026 · 21:45 UTC** · Auto-refreshes every 4 hours via GitHub Actions*
 <!-- TIMESTAMP_END -->
 
 ---
@@ -119,8 +119,8 @@ git commit & push (auto)
 <!-- REPO_LIST_START -->
 | # | Repository | Description | Language | ⭐ | 🍴 | Updated |
 |---|------------|-------------|----------|----|----|---------|
-| 1 | [open-issue-triage](https://github.com/SNTL84/open-issue-triage) | 🔧 Open Source Issue Triage — Maintainer-style responses to GitHub issues across the e | — | — | — | 2026-06-23 |
-| 2 | [Velocity](https://github.com/SNTL84/Velocity) | 🚀🪐🌕🌑☄️🛸 Opensource equivalent of Google's Antigravity/Claude Code/Cursor | — | — | — | 2026-06-23 |
+| 1 | [open-issue-triage](https://github.com/SNTL84/open-issue-triage) | 🔧 Open Source Issue Triage — Maintainer-style responses to GitHub issues across the e | — | ⭐1 | — | 2026-06-23 |
+| 2 | [Velocity](https://github.com/SNTL84/Velocity) | 🚀🪐🌕🌑☄️🛸 Opensource equivalent of Google's Antigravity/Claude Code/Cursor | — | ⭐1 | — | 2026-06-23 |
 | 3 | [sntl84-repo-counter](https://github.com/SNTL84/sntl84-repo-counter) | 🔢 Auto-updating repo counter for SNTL84 · Milan · desidevloper.com — live count of al | 🌐 HTML | ⭐1 | — | 2026-06-23 |
 | 4 | [SNTL84](https://github.com/SNTL84/SNTL84) | — | — | ⭐1 | — | 2026-06-23 |
 | 5 | [metromate-shiv-kathiawadi-thali-brand-development](https://github.com/SNTL84/metromate-shiv-kathiawadi-thali-brand-development) | 🍛 Complete Brand Development Case Study — MetroMate Real Marketing × Shiv Kathiawadi  | 🌐 HTML | ⭐1 | — | 2026-06-23 |
