@@ -34,7 +34,7 @@
 <!-- REPO_COUNT_END -->
 
 <!-- TIMESTAMP_START -->
-> 🕐 *Last updated: **23 Jun 2026 · 11:22 UTC** · Auto-refreshes every 4 hours via GitHub Actions*
+> 🕐 *Last updated: **23 Jun 2026 · 15:11 UTC** · Auto-refreshes every 4 hours via GitHub Actions*
 <!-- TIMESTAMP_END -->
 
 ---
@@ -119,30 +119,30 @@ git commit & push (auto)
 <!-- REPO_LIST_START -->
 | # | Repository | Description | Language | ⭐ | 🍴 | Updated |
 |---|------------|-------------|----------|----|----|---------|
-| 1 | [sntl84-repo-counter](https://github.com/SNTL84/sntl84-repo-counter) | 🔢 Auto-updating repo counter for SNTL84 · Milan · desidevloper.com — live count of al | 🌐 HTML | ⭐1 | — | 2026-06-23 |
-| 2 | [metromate-shiv-kathiawadi-thali-brand-development](https://github.com/SNTL84/metromate-shiv-kathiawadi-thali-brand-development) | 🍛 Complete Brand Development Case Study — MetroMate Real Marketing × Shiv Kathiawadi  | 🌐 HTML | ⭐1 | — | 2026-06-23 |
-| 3 | [sntl84-backoffice-os](https://github.com/SNTL84/sntl84-backoffice-os) | 🏢 BACKOFFICE OS v2.0 — A small utility HR back-office dashboard. Attendance, payroll, | 🌐 HTML | ⭐2 | — | 2026-06-11 |
-| 4 | [sntl84-desi-quote](https://github.com/SNTL84/sntl84-desi-quote) | ⚡ DesiQuote — Instant Gig Quote Calculator by Milan · SNTL 84 · desidevloper.com ｜ AI | 🌐 HTML | ⭐1 | — | 2026-06-10 |
-| 5 | [SNTL84BULKautomation-blaster-tools](https://github.com/SNTL84/SNTL84BULKautomation-blaster-tools) | WhatsApp & Aratt.ai Bulk Outreach Automation Tools by SNTL84 ｜ AI Workflow Profession | 🌐 HTML | ⭐1 | — | 2026-06-10 |
-| 6 | [SNTL84-Resume](https://github.com/SNTL84/SNTL84-Resume) | I Automate What's Costing You Money. · Milan · SNTL 84 · AI Workflow Professional · S | — | ⭐1 | — | 2026-06-10 |
-| 7 | [sntl84-python-foundations-projects](https://github.com/SNTL84/sntl84-python-foundations-projects) | 🐍 Python Foundations — CLI Projects by Milan · SNTL 84 ｜ I Automate What's Costing Yo | 🐍 Python | ⭐1 | — | 2026-06-10 |
-| 8 | [coral-heights-vehicle-registration](https://github.com/SNTL84/coral-heights-vehicle-registration) | Smart WhatsApp-based vehicle registration form for Coral Heights Society A-Wing. Buil | 🌐 HTML | ⭐1 | — | 2026-06-10 |
-| 9 | [sntl84-cohost-virtual-assistant-v3](https://github.com/SNTL84/sntl84-cohost-virtual-assistant-v3) | SNTL 84 Co-Host Virtual Assistant V3 — Premium AI-powered property management landing | 🌐 HTML | ⭐1 | — | 2026-06-10 |
-| 10 | [sntl84-ai-hiring-intel](https://github.com/SNTL84/sntl84-ai-hiring-intel) | AI Hiring Intelligence System — Strict, business-focused resume evaluator. Built by M | 🎨 CSS | ⭐1 | — | 2026-06-10 |
-| 11 | [ai-lead-enrichment-agent](https://github.com/SNTL84/ai-lead-enrichment-agent) | 🚀 AI Lead Enrichment Agent – Enrich startup leads with founder names, funding stages, | 🌐 HTML | ⭐1 | — | 2026-06-10 |
-| 12 | [n8n-india-smb-workflow-templates](https://github.com/SNTL84/n8n-india-smb-workflow-templates) | 🤖 Ready-to-import n8n workflow templates for Indian SMBs — WhatsApp leads, GST invoic | — | — | — | 2026-06-10 |
-| 13 | [sntl84-multilingual-statement-generator](https://github.com/SNTL84/sntl84-multilingual-statement-generator) | Client Conversion Statements Multilingual Generator — 29 statements · 39 languages ·  | 🌐 HTML | ⭐1 | — | 2026-06-10 |
-| 14 | [sntl84-desidevloper-live-demo](https://github.com/SNTL84/sntl84-desidevloper-live-demo) | 🚀 Live Demo — Services by desidevloper.com ｜ AI Systems · Full-Stack Builds · Supply  | 🌐 HTML | ⭐1 | — | 2026-06-10 |
-| 15 | [sntl84-fmcg-lead-intel](https://github.com/SNTL84/sntl84-fmcg-lead-intel) | 🧠 FMCG Lead Intelligence Engine — n8n + Claude AI. Automates distributor outreach: sc | — | ⭐1 | — | 2026-06-10 |
-| 16 | [sntl84-next-saas-stripe-starter](https://github.com/SNTL84/sntl84-next-saas-stripe-starter) | SaaS Starter with User Roles & Admin Panel — Private fork by SNTL 84 · Milan · Automa | 🔷 TS | ⭐1 | — | 2026-06-10 |
-| 17 | [whatsapp-outreach-tool](https://github.com/SNTL84/whatsapp-outreach-tool) | ⚡ Zero-install WhatsApp Outreach Tool — Bulk contact management, custom messages, VCF | 🌐 HTML | ⭐1 | — | 2026-06-10 |
-| 18 | [automate-what-costs-you](https://github.com/SNTL84/automate-what-costs-you) | 🚀 AI Automation Toolkit by Milan · SNTL 84 — Workflows, Bots & Business Intelligence  | 🌐 HTML | ⭐1 | — | 2026-06-10 |
-| 19 | [sntl84-ecom-seo-optimization](https://github.com/SNTL84/sntl84-ecom-seo-optimization) | 🔎 Service 07 — eCommerce SEO Optimization ｜ Google Rank · On-Page · Technical SEO ｜ S | — | ⭐1 | — | 2026-06-10 |
-| 20 | [desidevloper](https://github.com/SNTL84/desidevloper) | DesiDeveloper - Full-stack React portfolio & trade directory platform with Vite, Reac | — | — | — | 2026-06-10 |
-| 21 | [SNTL84-Growth-Engine](https://github.com/SNTL84/SNTL84-Growth-Engine) | 🚀 SNTL 84 — Your Growth Engine ｜ Lead Gen • AI Automation • Fulfillment • Bench Resou | — | ⭐1 | — | 2026-06-10 |
-| 22 | [desidevloper-portfolio-nextjs](https://github.com/SNTL84/desidevloper-portfolio-nextjs) | 🚀 desidevloper.com — Next.js 14 + TypeScript + TailwindCSS + Framer Motion portfolio. | 🔷 TS | — | — | 2026-06-10 |
-| 23 | [MetroMate](https://github.com/SNTL84/MetroMate) | 🏢 ResidentialParkingManagementServices ｜ Automate What's Costing You Money ｜ SNTL 84  | 🌐 HTML | ⭐1 | — | 2026-06-10 |
-| 24 | [SNTL84](https://github.com/SNTL84/SNTL84) | — | — | ⭐1 | — | 2026-06-10 |
+| 1 | [SNTL84](https://github.com/SNTL84/SNTL84) | — | — | ⭐1 | — | 2026-06-23 |
+| 2 | [sntl84-repo-counter](https://github.com/SNTL84/sntl84-repo-counter) | 🔢 Auto-updating repo counter for SNTL84 · Milan · desidevloper.com — live count of al | 🌐 HTML | ⭐1 | — | 2026-06-23 |
+| 3 | [metromate-shiv-kathiawadi-thali-brand-development](https://github.com/SNTL84/metromate-shiv-kathiawadi-thali-brand-development) | 🍛 Complete Brand Development Case Study — MetroMate Real Marketing × Shiv Kathiawadi  | 🌐 HTML | ⭐1 | — | 2026-06-23 |
+| 4 | [sntl84-backoffice-os](https://github.com/SNTL84/sntl84-backoffice-os) | 🏢 BACKOFFICE OS v2.0 — A small utility HR back-office dashboard. Attendance, payroll, | 🌐 HTML | ⭐2 | — | 2026-06-11 |
+| 5 | [sntl84-desi-quote](https://github.com/SNTL84/sntl84-desi-quote) | ⚡ DesiQuote — Instant Gig Quote Calculator by Milan · SNTL 84 · desidevloper.com ｜ AI | 🌐 HTML | ⭐1 | — | 2026-06-10 |
+| 6 | [SNTL84BULKautomation-blaster-tools](https://github.com/SNTL84/SNTL84BULKautomation-blaster-tools) | WhatsApp & Aratt.ai Bulk Outreach Automation Tools by SNTL84 ｜ AI Workflow Profession | 🌐 HTML | ⭐1 | — | 2026-06-10 |
+| 7 | [SNTL84-Resume](https://github.com/SNTL84/SNTL84-Resume) | I Automate What's Costing You Money. · Milan · SNTL 84 · AI Workflow Professional · S | — | ⭐1 | — | 2026-06-10 |
+| 8 | [sntl84-python-foundations-projects](https://github.com/SNTL84/sntl84-python-foundations-projects) | 🐍 Python Foundations — CLI Projects by Milan · SNTL 84 ｜ I Automate What's Costing Yo | 🐍 Python | ⭐1 | — | 2026-06-10 |
+| 9 | [coral-heights-vehicle-registration](https://github.com/SNTL84/coral-heights-vehicle-registration) | Smart WhatsApp-based vehicle registration form for Coral Heights Society A-Wing. Buil | 🌐 HTML | ⭐1 | — | 2026-06-10 |
+| 10 | [sntl84-cohost-virtual-assistant-v3](https://github.com/SNTL84/sntl84-cohost-virtual-assistant-v3) | SNTL 84 Co-Host Virtual Assistant V3 — Premium AI-powered property management landing | 🌐 HTML | ⭐1 | — | 2026-06-10 |
+| 11 | [sntl84-ai-hiring-intel](https://github.com/SNTL84/sntl84-ai-hiring-intel) | AI Hiring Intelligence System — Strict, business-focused resume evaluator. Built by M | 🎨 CSS | ⭐1 | — | 2026-06-10 |
+| 12 | [ai-lead-enrichment-agent](https://github.com/SNTL84/ai-lead-enrichment-agent) | 🚀 AI Lead Enrichment Agent – Enrich startup leads with founder names, funding stages, | 🌐 HTML | ⭐1 | — | 2026-06-10 |
+| 13 | [n8n-india-smb-workflow-templates](https://github.com/SNTL84/n8n-india-smb-workflow-templates) | 🤖 Ready-to-import n8n workflow templates for Indian SMBs — WhatsApp leads, GST invoic | — | — | — | 2026-06-10 |
+| 14 | [sntl84-multilingual-statement-generator](https://github.com/SNTL84/sntl84-multilingual-statement-generator) | Client Conversion Statements Multilingual Generator — 29 statements · 39 languages ·  | 🌐 HTML | ⭐1 | — | 2026-06-10 |
+| 15 | [sntl84-desidevloper-live-demo](https://github.com/SNTL84/sntl84-desidevloper-live-demo) | 🚀 Live Demo — Services by desidevloper.com ｜ AI Systems · Full-Stack Builds · Supply  | 🌐 HTML | ⭐1 | — | 2026-06-10 |
+| 16 | [sntl84-fmcg-lead-intel](https://github.com/SNTL84/sntl84-fmcg-lead-intel) | 🧠 FMCG Lead Intelligence Engine — n8n + Claude AI. Automates distributor outreach: sc | — | ⭐1 | — | 2026-06-10 |
+| 17 | [sntl84-next-saas-stripe-starter](https://github.com/SNTL84/sntl84-next-saas-stripe-starter) | SaaS Starter with User Roles & Admin Panel — Private fork by SNTL 84 · Milan · Automa | 🔷 TS | ⭐1 | — | 2026-06-10 |
+| 18 | [whatsapp-outreach-tool](https://github.com/SNTL84/whatsapp-outreach-tool) | ⚡ Zero-install WhatsApp Outreach Tool — Bulk contact management, custom messages, VCF | 🌐 HTML | ⭐1 | — | 2026-06-10 |
+| 19 | [automate-what-costs-you](https://github.com/SNTL84/automate-what-costs-you) | 🚀 AI Automation Toolkit by Milan · SNTL 84 — Workflows, Bots & Business Intelligence  | 🌐 HTML | ⭐1 | — | 2026-06-10 |
+| 20 | [sntl84-ecom-seo-optimization](https://github.com/SNTL84/sntl84-ecom-seo-optimization) | 🔎 Service 07 — eCommerce SEO Optimization ｜ Google Rank · On-Page · Technical SEO ｜ S | — | ⭐1 | — | 2026-06-10 |
+| 21 | [desidevloper](https://github.com/SNTL84/desidevloper) | DesiDeveloper - Full-stack React portfolio & trade directory platform with Vite, Reac | — | — | — | 2026-06-10 |
+| 22 | [SNTL84-Growth-Engine](https://github.com/SNTL84/SNTL84-Growth-Engine) | 🚀 SNTL 84 — Your Growth Engine ｜ Lead Gen • AI Automation • Fulfillment • Bench Resou | — | ⭐1 | — | 2026-06-10 |
+| 23 | [desidevloper-portfolio-nextjs](https://github.com/SNTL84/desidevloper-portfolio-nextjs) | 🚀 desidevloper.com — Next.js 14 + TypeScript + TailwindCSS + Framer Motion portfolio. | 🔷 TS | — | — | 2026-06-10 |
+| 24 | [MetroMate](https://github.com/SNTL84/MetroMate) | 🏢 ResidentialParkingManagementServices ｜ Automate What's Costing You Money ｜ SNTL 84  | 🌐 HTML | ⭐1 | — | 2026-06-10 |
 | 25 | [sntl84-desidevloper](https://github.com/SNTL84/sntl84-desidevloper) | We learn everyday to think with our tools. ｜ AI Workflow Developer · Automation-Drive | — | ⭐1 | — | 2026-06-10 |
 | 26 | [sntl84-hiring-system](https://github.com/SNTL84/sntl84-hiring-system) | AI-Powered Hiring System — Smart Job Board & Candidate Portal by SNTL 84 ｜ Vercel-Rea | — | ⭐1 | — | 2026-06-08 |
 | 27 | [sntl84-superpowers](https://github.com/SNTL84/sntl84-superpowers) | An agentic skills framework & software development methodology that works. | 🐚 Shell | ⭐1 | — | 2026-06-08 |
