@@ -10,6 +10,7 @@
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 [![Profile](https://img.shields.io/badge/GitHub-SNTL84-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/SNTL84)
 [![Website](https://img.shields.io/badge/Website-desidevloper.com-FF6B35?style=for-the-badge&logo=googlechrome&logoColor=white)](https://desidevloper.com)
+[![Live Dashboard](https://img.shields.io/badge/Live-Dashboard-22e0b8?style=for-the-badge&logo=githubpages&logoColor=white)](https://sntl84.github.io/sntl84-repo-counter/sntl84-Client-Dashboard.html)
 
 ---
 
@@ -44,7 +45,7 @@
 ### For Users
 
 1. **View Live Stats**: Check the [statistics table](#-live-repository-statistics) above
-2. **Explore Repos**: Browse the [full list](#-all-public-repositories) of public repositories
+2. **Live Dashboard**: Open the [GitHub Intelligence Dashboard](https://sntl84.github.io/sntl84-repo-counter/sntl84-Client-Dashboard.html) — powered by live GitHub REST + GraphQL API
 3. **Hire SNTL84**: [Message on WhatsApp](https://wa.me/919727413309) for AI automation services
 
 ### For Contributors
@@ -77,22 +78,94 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 
 ## 🏗️ Technical Architecture
 
+```mermaid
+flowchart TD
+    A([⏰ Scheduled Trigger\nEvery 4 hours]) --> B
+    A2([🔀 Push to main]) --> B
+    A3([▶️ Manual Dispatch]) --> B
+
+    B[GitHub Actions Runner\nubuntu-latest] --> C
+
+    C[scripts/count_repos.py] --> D
+    C --> E
+
+    D["🔷 GraphQL API\napi.github.com/graphql\nviewer.repositories\n(public + private counts)"] --> F
+    E["🟢 REST API\napi.github.com/users/SNTL84/repos\n(paginated · per_page=100)"] --> F
+
+    F[Parse & Aggregate\nstats · languages · stars · forks] --> G
+
+    G[Patch README.md\nbetween marker comments] --> G1
+    G1["`REPO_COUNT_START/END`\nStats table"] --> H
+    G --> G2["`REPO_LIST_START/END`\nFull repo list"]
+    G2 --> H
+    G --> G3["`TIMESTAMP_START/END`\nLast updated time"]
+    G3 --> H
+
+    H[git commit & push\nSNTL84-Bot · skip ci] --> I
+
+    I([✅ README live\nwith fresh stats])
+
+    style A fill:#1a2a1a,stroke:#22e0b8,color:#22e0b8
+    style A2 fill:#1a2a1a,stroke:#22e0b8,color:#22e0b8
+    style A3 fill:#1a2a1a,stroke:#22e0b8,color:#22e0b8
+    style D fill:#0d1f3c,stroke:#3178c6,color:#7ab8f5
+    style E fill:#0d1f3c,stroke:#3572A5,color:#7ab8f5
+    style I fill:#1a2a1a,stroke:#22e0b8,color:#22e0b8
 ```
-GitHub Actions (Scheduled)
-    ↓
-Every 4 hours + Push trigger
-    ↓
-scripts/count_repos.py
-    ├→ GraphQL: viewer.repositories (public/private)
-    └→ REST: /users/SNTL84/repos (paginated list)
-    ↓
-Update README.md between markers
-    ├→ REPO_COUNT_START/END (stats table)
-    ├→ REPO_LIST_START/END (repo table)
-    └→ TIMESTAMP_START/END (last update)
-    ↓
-git commit & push (auto)
+
+---
+
+## 🔄 Live GitHub API Flow (Dashboard)
+
+> The [live dashboard](https://sntl84.github.io/sntl84-repo-counter/sntl84-Client-Dashboard.html) calls GitHub REST & GraphQL APIs **directly from the browser** on every page load — no backend, no cache, no proxy.
+
+```mermaid
+sequenceDiagram
+    participant U as 🌐 Browser
+    participant R as GitHub REST API
+    participant G as GitHub GraphQL API
+    participant D as Dashboard UI
+
+    U->>R: GET /users/SNTL84
+    U->>R: GET /users/SNTL84/repos?per_page=100
+    U->>R: GET /users/SNTL84/events/public
+    Note over U,R: All 3 calls fire in parallel via Promise.all()
+
+    R-->>U: user profile · avatar · bio · followers
+    R-->>U: repos[] · stars · forks · languages · descriptions
+    R-->>U: events[] · push dates · contribution map
+
+    U->>G: POST /graphql\ncontributionsCollection query
+    Note over U,G: Optional · requires PAT token
+    G-->>U: totalContributions · calendar weeks · days
+
+    U->>D: Render stat tiles · language bar
+    U->>D: Render contribution heatmap (12 weeks)
+    U->>D: Render 9 repo cards · profile card
+    U->>D: Animate watermark · signature
+
+    Note over D: SNTL84 · Milan · Golden Lotus\nGitHub REST + GraphQL · Live
 ```
+
+---
+
+## ⚙️ How It Works
+
+1. **Scheduled Trigger**: GitHub Actions runs every 4 hours
+2. **API Calls**: Script fetches repo counts via GraphQL & REST APIs
+3. **Data Processing**: Aggregates stats, languages, stars, forks
+4. **README Update**: Patches README.md between marker comments
+5. **Auto-Commit**: Git commits and pushes changes automatically
+6. **Monitoring**: Status badges show workflow health
+
+| Setting | Value |
+|---------|-------|
+| 🔁 Schedule | Every 4 hours (optimized) |
+| 🔐 Auth | GITHUB_TOKEN (public) + GH_PAT (private) |
+| 🤖 Bot | SNTL84-Bot |
+| 📝 Commit | `chore: auto-update repo count [skip ci]` |
+| ⚡ Retry Logic | 3 attempts with exponential backoff |
+| 📊 Performance | Metrics tracking & rate limit awareness |
 
 ---
 
@@ -188,8 +261,8 @@ git commit & push (auto)
 - **[Contributing Guide](CONTRIBUTING.md)** — How to contribute code
 - **[Code of Conduct](CODE_OF_CONDUCT.md)** — Community standards
 - **[Security Policy](SECURITY.md)** — Vulnerability disclosure
-- **[Funding Info](FUNDING.yml)** — Support options
-- **[Issue Templates](.github/ISSUE_TEMPLATE/)** — Bug reports & feature requests
+- **[Funding Info](.github/FUNDING.yml)** — Support options
+- **[Live Dashboard](https://sntl84.github.io/sntl84-repo-counter/sntl84-Client-Dashboard.html)** — GitHub REST + GraphQL API powered UI
 
 ---
 
@@ -206,35 +279,6 @@ git commit & push (auto)
 
 ---
 
-## 📊 GitHub Stats
-
-- **Repos**: 36 public · 0 private
-- **Stars**: 14 across all public repos
-- **Primary Languages**: HTML, Python, TypeScript, JavaScript
-- **Active Development**: Continuous updates every 4 hours
-
----
-
-## ⚙️ How It Works
-
-1. **Scheduled Trigger**: GitHub Actions runs every 4 hours
-2. **API Calls**: Script fetches repo counts via GraphQL & REST APIs
-3. **Data Processing**: Aggregates stats, languages, stars, forks
-4. **README Update**: Patches README.md between marker comments
-5. **Auto-Commit**: Git commits and pushes changes automatically
-6. **Monitoring**: Status badges show workflow health
-
-| Setting | Value |
-|---------|-------|
-| 🔁 Schedule | Every 4 hours (optimized) |
-| 🔐 Auth | GITHUB_TOKEN (public) + GH_PAT (private) |
-| 🤖 Bot | SNTL84-Bot |
-| 📝 Commit | `chore: auto-update repo count [skip ci]` |
-| ⚡ Retry Logic | 3 attempts with exponential backoff |
-| 📊 Performance | Metrics tracking & rate limit awareness |
-
----
-
 ## 📜 License
 
 This project is licensed under the MIT License — see [LICENSE](LICENSE) file for details.
@@ -243,10 +287,10 @@ This project is licensed under the MIT License — see [LICENSE](LICENSE) file f
 
 ## 🙏 Acknowledgments
 
-- Built by **Milan (SNTL 84)** for workflow automation enthusiasts
-- Inspired by real-world needs to track repository metrics
-- Part of the desidevloper.com ecosystem
-- Optimized for GitHub community badges
+- Built by **Milan · SNTL 84 · Golden Lotus DesiDevloper** for workflow automation enthusiasts
+- Live GitHub API integration: REST + GraphQL, client-side, no backend
+- Part of the [desidevloper.com](https://desidevloper.com) ecosystem
+- Optimized for GitHub Developer Program & Marketplace listing
 
 ---
 
@@ -256,16 +300,18 @@ This project is licensed under the MIT License — see [LICENSE](LICENSE) file f
 
 [WhatsApp](https://wa.me/919727413309) • [Email](mailto:3goldenlotusroots@gmail.com) • [LinkedIn](https://www.linkedin.com/in/sntl2784) • [GitHub](https://github.com/SNTL84) • [Website](https://desidevloper.com)
 
+**[🌐 Open Live Dashboard →](https://sntl84.github.io/sntl84-repo-counter/sntl84-Client-Dashboard.html)**
+
 </div>
 
 ---
 
 <div align="center">
 
-**Made with ❤️ by [SNTL84](https://github.com/SNTL84)**
+**Made with ❤️ by [SNTL84](https://github.com/SNTL84) · Milan · Golden Lotus DesiDevloper**
 
 *I Automate What's Costing You Money.*
 
-*Last updated: 2026-04-24 · Auto-generated by GitHub Actions*
+*Powered by GitHub REST + GraphQL API · Auto-generated by GitHub Actions*
 
 </div>
