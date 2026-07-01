@@ -1,7 +1,7 @@
 # ============================================================
 # SNTL84 Repo Intelligence — GitHub Marketplace Action
 # Author : Milan · SNTL84 · Golden Lotus · desidevloper.com
-# Version: 1.0.0  |  Released: 2026-07-01
+# Version: 1.1.0  |  Fixed: 2026-07-01
 # Live Dashboard: https://sntl84.github.io/sntl84-repo-counter/
 # ============================================================
 
@@ -39,17 +39,13 @@ inputs:
     description: >
       Format for the stats-json output.
       Options: summary | json | markdown
-      - summary : human-readable text block
-      - json    : raw JSON string (pipe into jq or downstream steps)
-      - markdown: formatted markdown table
     required: false
     default: 'json'
 
   include-private:
     description: >
       Set to true to include private repo count in totals.
-      Requires a PAT with repo scope — GITHUB_TOKEN is sufficient
-      only when running in the same private repo.
+      Requires a PAT with repo scope.
     required: false
     default: 'false'
 
@@ -57,34 +53,51 @@ inputs:
 outputs:
   repo-count:
     description: 'Total number of public repositories for the target user'
+    value: ${{ steps.run-counter.outputs.repo-count }}
 
   total-stars:
     description: 'Sum of stargazers_count across all public repositories'
+    value: ${{ steps.run-counter.outputs.total-stars }}
 
   top-language:
     description: 'Most frequently used programming language across all repos'
+    value: ${{ steps.run-counter.outputs.top-language }}
 
   followers:
     description: 'Total follower count for the target user'
-
-  following:
-    description: 'Total following count for the target user'
-
-  latest-repo:
-    description: 'Name of the most recently pushed-to repository'
+    value: ${{ steps.run-counter.outputs.followers }}
 
   stats-json:
-    description: >
-      Full stats payload as a JSON string. Fields: repo_count,
-      total_stars, top_language, followers, following,
-      latest_repo, language_breakdown, fetched_at.
+    description: 'Full stats payload as a JSON string'
+    value: ${{ steps.run-counter.outputs.stats-json }}
 
-# ── RUNTIME ───────────────────────────────────────────────────
+# ── RUNTIME (composite — Python-based) ───────────────────────
 runs:
-  using: 'node20'
-  main: 'dist/index.js'
+  using: 'composite'
+  steps:
+    - name: 🐍 Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
 
-# ── USAGE EXAMPLES (see README.md for full docs) ──────────────
+    - name: 📦 Install dependencies
+      shell: bash
+      run: |
+        python -m pip install --upgrade pip --quiet
+        pip install requests --quiet
+
+    - name: 🔢 Run SNTL84 Repo Intelligence
+      id: run-counter
+      shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.github-token }}
+        TARGET_USER: ${{ inputs.target-user }}
+        OUTPUT_FORMAT: ${{ inputs.output-format }}
+        INCLUDE_PRIVATE: ${{ inputs.include-private }}
+      run: |
+        python ${{ github.action_path }}/scripts/count_repos.py
+
+# ── USAGE EXAMPLES ────────────────────────────────────────────
 # Minimal:
 #   - uses: SNTL84/sntl84-repo-counter@v1
 #     with:
@@ -97,21 +110,9 @@ runs:
 #       target-user: 'torvalds'
 #       output-format: 'markdown'
 #
-# Consume outputs:
-#   - name: Fetch GitHub Intelligence
-#     id: gh-intel
-#     uses: SNTL84/sntl84-repo-counter@v1
-#     with:
-#       github-token: ${{ secrets.GITHUB_TOKEN }}
-#   - name: Print stats
-#     run: |
-#       echo "Repos  : ${{ steps.gh-intel.outputs.repo-count }}"
-#       echo "Stars  : ${{ steps.gh-intel.outputs.total-stars }}"
-#       echo "Top Lang: ${{ steps.gh-intel.outputs.top-language }}"
-#
 # ── SIGNATURE WATERMARK ───────────────────────────────────────
 # SNTL84 · Milan · Golden Lotus · Surat, India
 # GitHub  : https://github.com/SNTL84
 # Web     : https://desidevloper.com
-# Built with AI browser automation · Perplexity Comet · 2026-07-01
+# Fixed with Perplexity AI · 2026-07-01
 # ──────────────────────────────────────────────────────────────
