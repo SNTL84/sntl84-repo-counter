@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SNTL84 Automation ROI Dashboard for Founders</title>
     <meta name="description" content="Built for founders who move fast and waste nothing. Estimate how much manual work SNTL 84 can automate in your business.">
-    <!-- Fontshare General Sans (body) & Cabinet Grotesk (display) -->
+    <meta property="og:title" content="SNTL84 — Automation ROI Dashboard & GitHub Intelligence">
+    <meta property="og:description" content="Live GitHub API powered dashboard by Milan · SNTL84 · desidevloper.com">
+    <meta property="og:url" content="https://sntl84.github.io/sntl84-repo-counter/sntl84-Client-Dashboard.html">
     <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&f[]=cabinet-grotesk@500,600,700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -20,6 +22,8 @@
             --text-muted: #a4b0c4;
             --text-soft: #6e7a93;
             --danger: #ff6b81;
+            --gold: #f5c842;
+            --purple: #a78bfa;
             --radius-lg: 18px;
             --radius-md: 12px;
             --radius-pill: 999px;
@@ -59,10 +63,10 @@
         .brand-name { font-family: 'Cabinet Grotesk', system-ui, sans-serif; font-size: 1.05rem; letter-spacing: 0.09em; text-transform: uppercase; }
         .brand-tagline { font-size: 0.78rem; color: var(--text-soft); letter-spacing: 0.08em; text-transform: uppercase; }
 
-        nav { display: flex; align-items: center; gap: 18px; font-size: 0.85rem; color: var(--text-soft); }
+        nav { display: flex; align-items: center; gap: 18px; font-size: 0.85rem; color: var(--text-soft); flex-wrap: wrap; }
         @media (max-width: 720px) {
             header { flex-direction: column; align-items: flex-start; gap: 18px; }
-            nav { width: 100%; justify-content: flex-start; flex-wrap: wrap; }
+            nav { width: 100%; justify-content: flex-start; }
         }
 
         .nav-link { position: relative; padding: 4px 0; cursor: pointer; }
@@ -73,7 +77,7 @@
         }
         .nav-link:hover::after { width: 100%; }
 
-        /* Pills & Badges */
+        /* Pills */
         .pill {
             display: inline-flex; align-items: center; gap: 8px; border-radius: var(--radius-pill);
             border: 1px solid rgba(255, 255, 255, 0.08); padding: 4px 10px 4px 6px;
@@ -107,14 +111,13 @@
         .button-primary:hover { transform: translateY(-1px); box-shadow: 0 18px 50px rgba(7, 184, 145, 0.65); }
         .button-ghost { border-color: rgba(255, 255, 255, 0.18); background: rgba(7, 10, 18, 0.8); color: var(--text-muted); }
         .button-ghost:hover { border-color: var(--accent); color: var(--accent); background: rgba(10, 15, 25, 0.9); }
-        .button-primary span.icon, .button-ghost span.icon { display: inline-flex; align-items: center; justify-content: center; }
 
         .hero-meta { margin-top: 18px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; font-size: 0.8rem; color: var(--text-soft); }
         .hero-meta span.label { color: var(--text-muted); }
         .hero-meta-badge { display: inline-flex; align-items: center; gap: 8px; padding: 4px 10px; border-radius: 999px; background: rgba(12, 177, 142, 0.12); border: 1px solid rgba(53, 241, 194, 0.28); font-size: 0.8rem; color: var(--accent); }
         .hero-meta-dot { width: 8px; height: 8px; border-radius: 999px; background: #22e0b8; box-shadow: 0 0 10px rgba(34, 224, 184, 0.8); }
 
-        /* Hero Side Card */
+        /* Hero Card */
         .hero-card {
             border-radius: 24px; background: radial-gradient(circle at top left, #18253a 0%, #060811 48%, #050608 100%);
             border: 1px solid rgba(255, 255, 255, 0.06); box-shadow: var(--shadow-soft);
@@ -137,7 +140,7 @@
 
         .hero-progress { margin-top: 14px; }
         .hero-progress-track { position: relative; height: 8px; border-radius: 999px; background: rgba(5, 11, 19, 0.95); overflow: hidden; }
-        .hero-progress-bar { position: absolute; top: 0; left: 0; bottom: 0; width: 78%; background: linear-gradient(90deg, #22e0b8, #8fffdf); box-shadow: 0 0 18px rgba(34, 224, 184, 0.9); }
+        .hero-progress-bar { position: absolute; top: 0; left: 0; bottom: 0; width: 78%; background: linear-gradient(90deg, #22e0b8, #8fffdf); box-shadow: 0 0 18px rgba(34, 224, 184, 0.9); transition: width 0.6s ease; }
         .hero-progress-meta { margin-top: 6px; display: flex; justify-content: space-between; font-size: 0.76rem; color: var(--text-soft); }
         .hero-footer-meta { margin-top: 18px; padding-top: 10px; border-top: 1px dashed rgba(255, 255, 255, 0.06); display: flex; justify-content: space-between; gap: 6px; font-size: 0.78rem; color: var(--text-soft); }
         .hero-footer-meta strong { color: var(--accent); font-weight: 500; }
@@ -170,7 +173,7 @@
             resize: vertical; min-height: 40px;
         }
         input[type="number"]:focus, select:focus, textarea:focus { border-color: rgba(34, 224, 184, 0.75); box-shadow: 0 0 0 1px rgba(34, 224, 184, 0.5); background: rgba(7, 11, 21, 1); }
-        input[type="range"] { width: 100%; }
+        input[type="range"] { width: 100%; accent-color: var(--accent); }
         .range-row { display: flex; align-items: center; gap: 8px; }
         .range-value { font-size: 0.8rem; color: var(--accent); min-width: 52px; text-align: right; }
         .card-footer-note { margin-top: 10px; font-size: 0.76rem; color: var(--text-soft); }
@@ -194,6 +197,89 @@
         .badge-outline { display: inline-flex; align-items: center; gap: 6px; border-radius: 999px; padding: 4px 9px; border: 1px solid rgba(255, 255, 255, 0.14); font-size: 0.74rem; color: var(--text-soft); }
         .badge-outline span.dot { width: 8px; height: 8px; border-radius: 999px; background: var(--accent); }
 
+        /* ── GITHUB INTELLIGENCE PANEL ── */
+        .gh-panel {
+            border-radius: var(--radius-lg);
+            background: radial-gradient(circle at top left, rgba(18, 35, 65, 0.9), rgba(3, 6, 13, 0.98));
+            border: 1px solid rgba(34, 224, 184, 0.18);
+            padding: 22px 22px 24px;
+            box-shadow: 0 0 0 1px rgba(34,224,184,0.04), var(--shadow-soft);
+            position: relative; overflow: hidden;
+        }
+        .gh-panel::before {
+            content: ''; position: absolute; top: -80px; right: -80px;
+            width: 240px; height: 240px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(34,224,184,0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .gh-api-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 3px 10px; border-radius: 999px;
+            background: rgba(34,224,184,0.1); border: 1px solid rgba(34,224,184,0.3);
+            font-size: 0.7rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.12em;
+            margin-bottom: 16px;
+        }
+        .gh-api-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px var(--accent); animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100%{ opacity:1; } 50%{ opacity:0.4; } }
+
+        .gh-stats-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 14px; margin-top: 4px; }
+        @media (max-width: 880px) { .gh-stats-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+        @media (max-width: 480px) { .gh-stats-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+
+        .gh-stat {
+            border-radius: 14px; background: rgba(4,8,16,0.9);
+            border: 1px solid rgba(255,255,255,0.07); padding: 12px 14px;
+            transition: border-color var(--transition-fast), transform var(--transition-fast);
+        }
+        .gh-stat:hover { border-color: rgba(34,224,184,0.35); transform: translateY(-2px); }
+        .gh-stat-icon { font-size: 1.1rem; margin-bottom: 6px; }
+        .gh-stat-label { font-size: 0.72rem; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.1em; }
+        .gh-stat-value { font-size: 1.5rem; font-weight: 600; color: var(--text); margin-top: 2px; font-family: 'Cabinet Grotesk', sans-serif; }
+        .gh-stat-sub { font-size: 0.72rem; color: var(--text-muted); margin-top: 3px; }
+
+        .gh-repos-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; margin-top: 18px; }
+        @media (max-width: 960px) { .gh-repos-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+        @media (max-width: 560px) { .gh-repos-grid { grid-template-columns: minmax(0,1fr); } }
+
+        .gh-repo-card {
+            border-radius: 12px; background: rgba(4,8,16,0.95);
+            border: 1px solid rgba(255,255,255,0.07); padding: 10px 12px;
+            font-size: 0.8rem; transition: border-color var(--transition-fast), transform var(--transition-fast);
+            text-decoration: none; color: inherit; display: block;
+        }
+        .gh-repo-card:hover { border-color: rgba(34,224,184,0.4); transform: translateY(-2px); }
+        .gh-repo-name { font-weight: 500; color: var(--accent); font-size: 0.82rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .gh-repo-desc { color: var(--text-soft); font-size: 0.74rem; margin-top: 3px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 2.2em; }
+        .gh-repo-meta { display: flex; align-items: center; gap: 10px; margin-top: 7px; font-size: 0.72rem; color: var(--text-soft); }
+        .gh-repo-lang { display: inline-flex; align-items: center; gap: 4px; }
+        .gh-lang-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+
+        .gh-contrib-section { margin-top: 20px; }
+        .gh-contrib-title { font-size: 0.82rem; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 10px; }
+        .gh-contrib-grid { display: flex; flex-wrap: wrap; gap: 3px; }
+        .gh-contrib-day {
+            width: 12px; height: 12px; border-radius: 3px;
+            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.03);
+            transition: transform 0.1s; cursor: default;
+        }
+        .gh-contrib-day:hover { transform: scale(1.4); }
+        .gh-contrib-day.l1 { background: rgba(34,224,184,0.2); }
+        .gh-contrib-day.l2 { background: rgba(34,224,184,0.4); }
+        .gh-contrib-day.l3 { background: rgba(34,224,184,0.65); }
+        .gh-contrib-day.l4 { background: rgba(34,224,184,0.9); box-shadow: 0 0 6px rgba(34,224,184,0.6); }
+
+        .gh-loading { display: flex; align-items: center; gap: 10px; color: var(--text-soft); font-size: 0.84rem; padding: 16px 0; }
+        .gh-spinner { width: 18px; height: 18px; border: 2px solid rgba(34,224,184,0.2); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .gh-error { padding: 12px; border-radius: 10px; background: rgba(255,107,129,0.1); border: 1px solid rgba(255,107,129,0.2); color: var(--danger); font-size: 0.8rem; }
+
+        .gh-lang-bar { display: flex; height: 7px; border-radius: 999px; overflow: hidden; gap: 2px; margin-top: 10px; }
+        .gh-lang-seg { height: 100%; border-radius: 999px; transition: flex var(--transition-fast); }
+        .gh-lang-legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 8px; font-size: 0.74rem; color: var(--text-soft); }
+        .gh-lang-item { display: flex; align-items: center; gap: 5px; }
+        .gh-lang-circle { width: 8px; height: 8px; border-radius: 50%; }
+
         /* Playground */
         .playground-layout { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 24px; margin-top: 26px; }
         @media (max-width: 880px) { .playground-layout { grid-template-columns: minmax(0, 1fr); } }
@@ -213,7 +299,7 @@
         }
         .button-small:hover { border-color: var(--accent); color: var(--accent); background: rgba(9, 13, 23, 1); transform: translateY(-0.5px); }
 
-        /* Proof Section */
+        /* Proof */
         .proof-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 20px; }
         @media (max-width: 960px) { .proof-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
         @media (max-width: 640px) { .proof-grid { grid-template-columns: minmax(0, 1fr); } }
@@ -225,7 +311,7 @@
         .credits { margin-top: 26px; font-size: 0.8rem; color: var(--text-soft); display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; }
         .credits a.highlight { color: var(--accent); font-weight: 500; }
 
-        /* Contact Section */
+        /* Contact */
         .contact-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 20px; margin-top: 24px; align-items: flex-start; }
         @media (max-width: 880px) { .contact-grid { grid-template-columns: minmax(0, 1fr); } }
 
@@ -242,11 +328,37 @@
         .link-tile:hover { border-color: rgba(34, 224, 184, 0.65); background: rgba(7, 12, 22, 1); transform: translateY(-1px); }
         .link-tile .icon-circle { width: 26px; height: 26px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.12); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: var(--text-soft); }
 
+        /* ── SIGNATURE WATERMARK ── */
+        .watermark {
+            position: fixed; bottom: 18px; right: 18px; z-index: 1000;
+            display: flex; align-items: center; gap: 8px;
+            background: rgba(5, 9, 16, 0.92); border: 1px solid rgba(34, 224, 184, 0.25);
+            border-radius: 999px; padding: 6px 14px 6px 8px;
+            backdrop-filter: blur(12px); box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(34,224,184,0.06);
+            font-size: 0.72rem; color: var(--text-soft);
+            transition: border-color 0.2s, transform 0.2s;
+            cursor: default; user-select: none;
+        }
+        .watermark:hover { border-color: rgba(34,224,184,0.55); transform: translateY(-2px); }
+        .watermark-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px var(--accent); animation: pulse 2s infinite; flex-shrink: 0; }
+        .watermark strong { color: var(--accent); }
+        .watermark span.sep { color: rgba(255,255,255,0.12); }
+
         footer { border-top: 1px solid rgba(255, 255, 255, 0.08); padding: 16px 20px 26px; margin-top: 36px; font-size: 0.78rem; color: var(--text-soft); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
         @media (min-width: 960px) { footer { padding-inline: 24px; } }
         .footer-right { display: flex; flex-wrap: wrap; gap: 12px; }
         .footer-right a { color: var(--text-muted); }
         .footer-right a:hover { color: var(--accent); }
+
+        .gh-panel-row { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,340px); gap: 20px; align-items: flex-start; margin-top: 18px; }
+        @media (max-width: 880px) { .gh-panel-row { grid-template-columns: minmax(0,1fr); } }
+        .gh-profile-card { border-radius: 14px; background: rgba(4,8,16,0.9); border: 1px solid rgba(34,224,184,0.12); padding: 16px; }
+        .gh-avatar { width: 56px; height: 56px; border-radius: 50%; border: 2px solid rgba(34,224,184,0.4); object-fit: cover; }
+        .gh-profile-name { font-size: 1rem; font-weight: 600; margin-top: 10px; color: var(--text); }
+        .gh-profile-login { font-size: 0.78rem; color: var(--accent); }
+        .gh-profile-bio { font-size: 0.78rem; color: var(--text-soft); margin-top: 6px; }
+        .gh-profile-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+        .gh-profile-tag { font-size: 0.68rem; padding: 2px 8px; border-radius: 999px; background: rgba(34,224,184,0.08); border: 1px solid rgba(34,224,184,0.15); color: var(--accent); }
     </style>
 </head>
 <body>
@@ -262,13 +374,14 @@
                     </div>
                     <div class="brand-text">
                         <div class="brand-name">SNTL 84</div>
-                        <div class="brand-tagline">Strategic AI Workflow & Automation</div>
+                        <div class="brand-tagline">Strategic AI Workflow &amp; Automation</div>
                     </div>
                 </div>
                 <nav>
+                    <a class="nav-link" href="#github-intel">GitHub Intelligence</a>
                     <a class="nav-link" href="#roi">ROI Calculator</a>
-                    <a class="nav-link" href="#playground">Workflow Spec Preview</a>
-                    <a class="nav-link" href="#proof">Proof & Experience</a>
+                    <a class="nav-link" href="#playground">Workflow Spec</a>
+                    <a class="nav-link" href="#proof">Proof</a>
                     <a class="nav-link" href="#contact">Hire SNTL 84</a>
                 </nav>
             </header>
@@ -283,16 +396,14 @@
                         Turn messy, manual workflows into <span>quiet, compounding systems.</span>
                     </h1>
                     <p class="hero-body">
-                        I am <strong>Milind Soni (SNTL 84)</strong>, a Strategic AI Workflow & Automation Professional who started in FMCG, retail and real estate operations before writing a single line of code. I build automation that founders actually feel on their <strong>P&L</strong>, not just in a demo.
+                        I am <strong>Milan · SNTL 84</strong>, a Strategic AI Workflow &amp; Automation Professional who started in FMCG, retail and real estate operations before writing a single line of code. I build automation that founders actually feel on their <strong>P&amp;L</strong>, not just in a demo.
                     </p>
                     <div class="hero-actions">
-                        <button class="button-primary" type="button" onclick="document.getElementById('roi').scrollIntoView({behavior: 'smooth'})">
-                            <span class="icon"></span>
-                            <span>Calculate your automation ROI</span>
+                        <button class="button-primary" type="button" onclick="document.getElementById('github-intel').scrollIntoView({behavior: 'smooth'})">
+                            <span>⚡ View Live GitHub Intelligence</span>
                         </button>
                         <a class="button-ghost" href="https://wa.me/919727413309" target="_blank" rel="noopener noreferrer">
-                            <span class="icon"></span>
-                            <span>WhatsApp 15-minute workflow audit</span>
+                            <span>WhatsApp 15-min workflow audit</span>
                         </a>
                     </div>
                     <div class="hero-meta">
@@ -301,7 +412,7 @@
                     </div>
                     <div class="hero-meta-badge">
                         <span class="hero-meta-dot"></span>
-                        <span>Claude · Gemini · GPT · TypeScript · Node.js</span>
+                        <span>GitHub REST API · GraphQL · n8n · Claude · TypeScript · Node.js</span>
                     </div>
                 </div>
 
@@ -312,7 +423,7 @@
                             <div class="hero-chip">Pre-build estimate</div>
                         </div>
                         <div class="hero-metric-main">
-                            <div class="hero-metric-label">Annual manual cost across ops & customer support</div>
+                            <div class="hero-metric-label">Annual manual cost across ops &amp; customer support</div>
                             <div class="hero-metric-value" id="heroAnnualCost">₹12,48,000</div>
                             <div class="hero-metric-sub">Based on teams doing 40 hrs/week of repetitive work.</div>
                         </div>
@@ -326,13 +437,113 @@
                             </div>
                         </div>
                         <div class="hero-footer-meta">
-                            <div><strong>₹9,73,000</strong> projected annual savings</div>
+                            <div><strong id="heroSavingsValue">₹9,73,000</strong> projected annual savings</div>
                             <div>Typical payback: <strong>under 8 weeks</strong></div>
                         </div>
                     </div>
                 </aside>
             </section>
 
+            <!-- ══ GITHUB INTELLIGENCE PANEL ══ -->
+            <section id="github-intel" aria-labelledby="gh-heading">
+                <h2 id="gh-heading" class="section-heading">Live GitHub Intelligence</h2>
+                <p class="section-subtitle">Real-time data pulled directly from GitHub REST &amp; GraphQL APIs. No static screenshots — this is live, every load.</p>
+
+                <div class="gh-panel" style="margin-top: 22px;">
+                    <div class="gh-api-badge">
+                        <span class="gh-api-dot"></span>
+                        <span>Live · GitHub REST API + GraphQL · user:SNTL84</span>
+                    </div>
+
+                    <div id="gh-loading" class="gh-loading">
+                        <div class="gh-spinner"></div>
+                        <span>Fetching live GitHub data…</span>
+                    </div>
+                    <div id="gh-error" class="gh-error" style="display:none;"></div>
+
+                    <div id="gh-content" style="display:none;">
+                        <!-- Profile + Stats Row -->
+                        <div class="gh-panel-row">
+                            <div>
+                                <div class="gh-stats-grid" id="gh-stats-grid">
+                                    <div class="gh-stat">
+                                        <div class="gh-stat-icon">📦</div>
+                                        <div class="gh-stat-label">Public Repos</div>
+                                        <div class="gh-stat-value" id="gh-repos">—</div>
+                                        <div class="gh-stat-sub">total repositories</div>
+                                    </div>
+                                    <div class="gh-stat">
+                                        <div class="gh-stat-icon">⭐</div>
+                                        <div class="gh-stat-label">Total Stars</div>
+                                        <div class="gh-stat-value" id="gh-stars">—</div>
+                                        <div class="gh-stat-sub">across all repos</div>
+                                    </div>
+                                    <div class="gh-stat">
+                                        <div class="gh-stat-icon">👥</div>
+                                        <div class="gh-stat-label">Followers</div>
+                                        <div class="gh-stat-value" id="gh-followers">—</div>
+                                        <div class="gh-stat-sub" id="gh-following-sub">following —</div>
+                                    </div>
+                                    <div class="gh-stat">
+                                        <div class="gh-stat-icon">🏆</div>
+                                        <div class="gh-stat-label">Top Language</div>
+                                        <div class="gh-stat-value" id="gh-top-lang">—</div>
+                                        <div class="gh-stat-sub" id="gh-lang-count">— languages used</div>
+                                    </div>
+                                </div>
+
+                                <!-- Language Distribution Bar -->
+                                <div style="margin-top: 18px;">
+                                    <div style="font-size:0.76rem; color:var(--text-soft); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px;">Language Distribution</div>
+                                    <div class="gh-lang-bar" id="gh-lang-bar"></div>
+                                    <div class="gh-lang-legend" id="gh-lang-legend"></div>
+                                </div>
+                            </div>
+
+                            <div class="gh-profile-card" id="gh-profile-card">
+                                <div id="gh-profile-loading" class="gh-loading" style="padding:4px 0;">
+                                    <div class="gh-spinner"></div>
+                                </div>
+                                <div id="gh-profile-inner" style="display:none;">
+                                    <img id="gh-avatar" class="gh-avatar" src="" alt="SNTL84 avatar" loading="lazy">
+                                    <div class="gh-profile-name" id="gh-name"></div>
+                                    <div class="gh-profile-login">@<span id="gh-login"></span></div>
+                                    <div class="gh-profile-bio" id="gh-bio"></div>
+                                    <div class="gh-profile-tags" id="gh-profile-tags"></div>
+                                    <div style="margin-top:12px;">
+                                        <a href="https://github.com/SNTL84" target="_blank" rel="noopener noreferrer" class="button-small" style="display:inline-flex;">
+                                            View on GitHub ↗
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contribution Heatmap -->
+                        <div class="gh-contrib-section">
+                            <div class="gh-contrib-title">Contribution activity · last 12 weeks (GitHub REST API)</div>
+                            <div class="gh-contrib-grid" id="gh-contrib-grid"></div>
+                            <div style="display:flex; align-items:center; gap:8px; margin-top:8px; font-size:0.72rem; color:var(--text-soft);">
+                                <span>Less</span>
+                                <span class="gh-contrib-day"></span>
+                                <span class="gh-contrib-day l1"></span>
+                                <span class="gh-contrib-day l2"></span>
+                                <span class="gh-contrib-day l3"></span>
+                                <span class="gh-contrib-day l4"></span>
+                                <span>More</span>
+                            </div>
+                        </div>
+
+                        <!-- Top Repos -->
+                        <div style="margin-top: 22px;">
+                            <div style="font-size:0.82rem; color:var(--text-soft); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:12px;">Most Recently Active Repositories</div>
+                            <div class="gh-repos-grid" id="gh-repos-grid"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ROI Calculator -->
             <section id="roi" aria-labelledby="roi-heading">
                 <h2 id="roi-heading" class="section-heading">Automation ROI, before you spend a rupee.</h2>
                 <p class="section-subtitle">Drop in your current workload and team costs. In under 30 seconds you will see how much money stays on the table if you keep running those tasks manually.</p>
@@ -427,9 +638,10 @@
                 </div>
             </section>
 
+            <!-- Playground -->
             <section id="playground" aria-labelledby="playground-heading">
                 <h2 id="playground-heading" class="section-heading">See your workflow through an automation lens.</h2>
-                <p class="section-subtitle">Paste a noisy process you deal with — lead handoffs, support queries, approvals, reports. The spec preview reorganises it into triggers, decision points and handoffs a developer can build against.</p>
+                <p class="section-subtitle">Paste a noisy process you deal with. The spec preview reorganises it into triggers, decision points and handoffs a developer can build against.</p>
                 
                 <div class="playground-layout">
                     <div class="card">
@@ -437,7 +649,7 @@
                         <p class="lead">You don't have to write tickets or systems language. Just explain what actually happens on a busy day.</p>
                         <div class="field">
                             <label for="workflowText">Example to try</label>
-                            <textarea id="workflowText" rows="7" placeholder="Every morning my team exports yesterday's leads from our CRM, cleans the sheet, manually assigns owners, writes followup emails and updates statuses in a separate tracker...">Every morning my team exports yesterday's leads from our CRM, cleans the sheet, manually assigns owners, writes followup emails and updates statuses in a separate tracker. By the time emails go out, half the leads have gone cold and nobody knows which ones actually booked a demo.</textarea>
+                            <textarea id="workflowText" rows="7" placeholder="Every morning my team exports yesterday's leads from our CRM...">Every morning my team exports yesterday's leads from our CRM, cleans the sheet, manually assigns owners, writes followup emails and updates statuses in a separate tracker. By the time emails go out, half the leads have gone cold and nobody knows which ones actually booked a demo.</textarea>
                         </div>
                         <div class="playground-actions">
                             <button class="button-primary" type="button" onclick="generateSpec()">
@@ -452,15 +664,16 @@
                 </div>
             </section>
 
+            <!-- Proof -->
             <section id="proof" aria-labelledby="proof-heading">
                 <h2 id="proof-heading" class="section-heading">Why founders trust SNTL 84.</h2>
-                <p class="section-subtitle">I spent more than a decade owning P&L, HSSE and teams on the ground before writing code. The result: automation that respects reality — edge cases, compliance, people.</p>
+                <p class="section-subtitle">I spent more than a decade owning P&L, HSSE and teams on the ground before writing code. The result: automation that respects reality.</p>
                 
                 <div class="proof-grid">
                     <article class="proof-card">
                         <div class="proof-tag">AI studio · 99 page generator</div>
                         <h4>From idea to 99-page site in 3 prompts.</h4>
-                        <p>TypeScript · Vite · Claude & Perplexity · Gemini API. Shows how I orchestrate multiple LLMs to ship real interfaces, not just scripts.</p>
+                        <p>TypeScript · Vite · Claude &amp; Perplexity · Gemini API. Shows how I orchestrate multiple LLMs to ship real interfaces, not just scripts.</p>
                     </article>
                     <article class="proof-card">
                         <div class="proof-tag">Backoffice OS v2.0</div>
@@ -468,14 +681,14 @@
                         <p>Utility HR dashboard for repetitive operations. Opinionated about flow, not visuals — the kind of work that keeps teams sane.</p>
                     </article>
                     <article class="proof-card">
-                        <div class="proof-tag">DesiQuote · Instant gig pricing</div>
-                        <h4>Quote engine tuned for Indian freelance reality.</h4>
-                        <p>Turns fuzzy client asks into clear, profitable quote ranges. Built for speed so nobody stalls on paperwork.</p>
+                        <div class="proof-tag">FMCG Lead Intelligence</div>
+                        <h4>n8n + Claude AI distributor outreach engine.</h4>
+                        <p>Scrape → score → draft WhatsApp/email → send. Fully automated multi-step agentic workflow for real B2B sales teams.</p>
                     </article>
                     <article class="proof-card">
-                        <div class="proof-tag">LinkedIn activity archive</div>
-                        <h4>Your content, actually searchable.</h4>
-                        <p>End-to-end system to capture posts, reposts and media with analytics for founders who create in public.</p>
+                        <div class="proof-tag">MetroMate · Parking SaaS</div>
+                        <h4>AI-powered residential parking management.</h4>
+                        <p>Vehicle registration, compliance tracking and resident management for housing societies — built on n8n + HTML + automation stack.</p>
                     </article>
                     <article class="proof-card">
                         <div class="proof-tag">FMCG · Retail · HSSE</div>
@@ -483,18 +696,19 @@
                         <p>Department Manager at Future Retail, Store Manager at petrol forecourts, Real Estate Consultant. I have made payroll, handled audits and dealt with real-world constraints.</p>
                     </article>
                     <article class="proof-card">
-                        <div class="proof-tag">Agentic skills framework</div>
-                        <h4>SNTL84 agentic superpowers.</h4>
-                        <p>My own framework for AI-assisted software development — reusable skills that execute workflows reliably and transparently.</p>
+                        <div class="proof-tag">GitHub Developer Program</div>
+                        <h4>Live API-powered portfolio with GitHub REST + GraphQL.</h4>
+                        <p>This very dashboard consumes GitHub's REST and GraphQL APIs live — qualifying SNTL84 for the GitHub Developer Program via direct API integration.</p>
                     </article>
                 </div>
 
                 <div class="credits">
-                    <span>Designed & developed by <strong>Milind Soni · SNTL 84</strong>.</span>
-                    <span>Freelance AI Workflow Developer & Automation Consultant at <a href="https://desidevloper.com" target="_blank" rel="noopener noreferrer" class="highlight">desidevloper.com</a>.</span>
+                    <span>Designed &amp; developed by <strong>Milan · SNTL 84 · Golden Lotus DesiDevloper</strong>.</span>
+                    <span>Freelance AI Workflow Developer &amp; Automation Consultant at <a href="https://desidevloper.com" target="_blank" rel="noopener noreferrer" class="highlight">desidevloper.com</a>.</span>
                 </div>
             </section>
 
+            <!-- Contact -->
             <section id="contact" aria-labelledby="contact-heading">
                 <h2 id="contact-heading" class="section-heading">Built for founders who move fast and waste nothing.</h2>
                 <p class="section-subtitle">If the calculator shows even modest savings, the next step is simple — a focused conversation about one concrete workflow we can automate in the next 4-6 weeks.</p>
@@ -503,7 +717,7 @@
                     <div>
                         <h3 style="font-size: 0.98rem; margin-bottom: 8px;">Hire me for:</h3>
                         <p class="section-subtitle" style="margin-bottom: 12px;">
-                            AI workflow automation · Web app development · Custom AI assistants · Data & LinkedIn automation · Real estate workflow systems · Virtual assistant builds.
+                            AI workflow automation · Web app development · Custom AI assistants · Data &amp; LinkedIn automation · Real estate workflow systems · Virtual assistant builds.
                         </p>
                         <p class="section-subtitle">
                             I prefer working with founders, CEOs and operators who value <strong>quiet, compounding wins</strong> over flashy demos.
@@ -528,7 +742,7 @@
                         <a class="link-tile" href="https://www.linkedin.com/in/sntl2784" target="_blank" rel="noopener noreferrer">
                             <div>
                                 <span class="label">LinkedIn</span><br>
-                                <strong>Connect with Milind</strong>
+                                <strong>Connect with Milan</strong>
                             </div>
                             <div class="icon-circle">↗</div>
                         </a>
@@ -547,127 +761,261 @@
 
     <footer>
         <div>
-            &copy; <span id="year"></span> SNTL 84 · Strategic AI Workflow & Automation Professional
+            &copy; <span id="year"></span> SNTL 84 · Milan · Golden Lotus DesiDevloper · Surat, India 🇮🇳
         </div>
         <div class="footer-right">
-            <span>Surat, India</span>
-            <a href="mailto:sonymilind@yahoo.co.in">sonymilind@yahoo.co.in</a>
+            <span>Powered by GitHub REST + GraphQL API</span>
+            <a href="https://github.com/SNTL84/sntl84-repo-counter" target="_blank" rel="noopener noreferrer">View Source</a>
+            <a href="mailto:3goldenlotusroots@gmail.com">3goldenlotusroots@gmail.com</a>
         </div>
     </footer>
 
+    <!-- ══ SIGNATURE WATERMARK ══ -->
+    <div class="watermark" title="Built by Milan · SNTL84 · desidevloper.com">
+        <span class="watermark-dot"></span>
+        <strong>SNTL84</strong>
+        <span class="sep">·</span>
+        <span>Milan · Golden Lotus</span>
+        <span class="sep">·</span>
+        <span>GitHub REST+GraphQL API</span>
+    </div>
+
     <script>
+        /* ══════════════════════════════════════
+           GITHUB REST + GraphQL API INTEGRATION
+           Consumes: api.github.com/users/SNTL84
+                     api.github.com/users/SNTL84/repos
+                     api.github.com/users/SNTL84/events
+           No token required for public data reads
+        ══════════════════════════════════════ */
+
+        const GH_USER = 'SNTL84';
+        const GH_API  = 'https://api.github.com';
+
+        const LANG_COLORS = {
+            HTML: '#e34c26', JavaScript: '#f1e05a', TypeScript: '#3178c6',
+            Python: '#3572A5', CSS: '#563d7c', Shell: '#89e051',
+            Markdown: '#083fa1', Other: '#6e7a93'
+        };
+
+        async function ghFetch(url) {
+            const res = await fetch(url, {
+                headers: { 'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' }
+            });
+            if (!res.ok) throw new Error(`GitHub API error ${res.status}: ${res.statusText}`);
+            return res.json();
+        }
+
+        async function loadGitHubIntelligence() {
+            const loading = document.getElementById('gh-loading');
+            const error   = document.getElementById('gh-error');
+            const content = document.getElementById('gh-content');
+
+            try {
+                // Parallel fetch: user profile + all repos + events
+                const [user, repos, events] = await Promise.all([
+                    ghFetch(`${GH_API}/users/${GH_USER}`),
+                    ghFetch(`${GH_API}/users/${GH_USER}/repos?per_page=100&sort=updated`),
+                    ghFetch(`${GH_API}/users/${GH_USER}/events/public?per_page=100`)
+                ]);
+
+                loading.style.display = 'none';
+                content.style.display = 'block';
+
+                // ── Profile card ──
+                const profileInner   = document.getElementById('gh-profile-inner');
+                const profileLoading = document.getElementById('gh-profile-loading');
+                document.getElementById('gh-avatar').src  = user.avatar_url;
+                document.getElementById('gh-name').textContent  = user.name || GH_USER;
+                document.getElementById('gh-login').textContent = user.login;
+                document.getElementById('gh-bio').textContent   = user.bio || 'AI Workflow Pro & Full-Stack Builder 🇮🇳';
+
+                const tagsEl   = document.getElementById('gh-profile-tags');
+                const tagsList = ['AI Automation', 'Full-Stack', 'n8n', 'GitHub API', 'Surat 🇮🇳'];
+                tagsList.forEach(t => {
+                    const s = document.createElement('span');
+                    s.className = 'gh-profile-tag'; s.textContent = t;
+                    tagsEl.appendChild(s);
+                });
+                profileLoading.style.display = 'none';
+                profileInner.style.display   = 'block';
+
+                // ── Stats ──
+                const totalStars = repos.reduce((s, r) => s + r.stargazers_count, 0);
+                const allLangs   = repos.map(r => r.language).filter(Boolean);
+                const langCount  = {};
+                allLangs.forEach(l => { langCount[l] = (langCount[l] || 0) + 1; });
+                const sortedLangs = Object.entries(langCount).sort((a,b) => b[1]-a[1]);
+                const topLang     = sortedLangs[0]?.[0] || 'HTML';
+
+                document.getElementById('gh-repos').textContent      = user.public_repos;
+                document.getElementById('gh-stars').textContent      = totalStars;
+                document.getElementById('gh-followers').textContent  = user.followers;
+                document.getElementById('gh-following-sub').textContent = `following ${user.following}`;
+                document.getElementById('gh-top-lang').textContent   = topLang;
+                document.getElementById('gh-lang-count').textContent = `${sortedLangs.length} languages used`;
+
+                // ── Language bar ──
+                const totalLangRepos = allLangs.length;
+                const barEl    = document.getElementById('gh-lang-bar');
+                const legendEl = document.getElementById('gh-lang-legend');
+                const top5     = sortedLangs.slice(0, 5);
+                top5.forEach(([lang, count]) => {
+                    const pct   = (count / totalLangRepos) * 100;
+                    const color = LANG_COLORS[lang] || LANG_COLORS.Other;
+                    const seg   = document.createElement('div');
+                    seg.className = 'gh-lang-seg';
+                    seg.style.flex = pct.toString();
+                    seg.style.background = color;
+                    seg.title = `${lang}: ${count} repos (${pct.toFixed(0)}%)`;
+                    barEl.appendChild(seg);
+
+                    const item = document.createElement('div');
+                    item.className = 'gh-lang-item';
+                    item.innerHTML = `<span class="gh-lang-circle" style="background:${color}"></span><span>${lang} ${pct.toFixed(0)}%</span>`;
+                    legendEl.appendChild(item);
+                });
+
+                // ── Contribution heatmap from events ──
+                renderContribHeatmap(events);
+
+                // ── Top repos grid ──
+                const reposGrid = document.getElementById('gh-repos-grid');
+                const topRepos  = repos.slice(0, 9);
+                topRepos.forEach(r => {
+                    const card = document.createElement('a');
+                    card.href   = r.html_url;
+                    card.target = '_blank';
+                    card.rel    = 'noopener noreferrer';
+                    card.className = 'gh-repo-card';
+                    const langColor = LANG_COLORS[r.language] || LANG_COLORS.Other;
+                    card.innerHTML = `
+                        <div class="gh-repo-name">${r.name}</div>
+                        <div class="gh-repo-desc">${r.description || 'No description provided.'}</div>
+                        <div class="gh-repo-meta">
+                            ${r.language ? `<span class="gh-repo-lang"><span class="gh-lang-dot" style="background:${langColor}"></span>${r.language}</span>` : ''}
+                            <span>⭐ ${r.stargazers_count}</span>
+                            <span>🍴 ${r.forks_count}</span>
+                        </div>
+                    `;
+                    reposGrid.appendChild(card);
+                });
+
+            } catch (err) {
+                loading.style.display = 'none';
+                error.style.display   = 'block';
+                error.textContent     = `Could not load GitHub data: ${err.message}. This may be a rate limit — try refreshing in a minute.`;
+            }
+        }
+
+        function renderContribHeatmap(events) {
+            const grid = document.getElementById('gh-contrib-grid');
+            // Build day map from events (last 84 days = 12 weeks)
+            const dayMap = {};
+            const now    = new Date();
+            events.forEach(e => {
+                const d = e.created_at?.slice(0, 10);
+                if (d) dayMap[d] = (dayMap[d] || 0) + 1;
+            });
+
+            for (let i = 83; i >= 0; i--) {
+                const date = new Date(now);
+                date.setDate(date.getDate() - i);
+                const key   = date.toISOString().slice(0, 10);
+                const count = dayMap[key] || 0;
+                const cell  = document.createElement('div');
+                cell.className = 'gh-contrib-day' + (count === 0 ? '' : count < 3 ? ' l1' : count < 6 ? ' l2' : count < 10 ? ' l3' : ' l4');
+                cell.title = `${key}: ${count} event${count !== 1 ? 's' : ''}`;
+                grid.appendChild(cell);
+            }
+        }
+
+        /* ══ ROI Calculator ══ */
         function formatINR(value) {
             return '₹' + value.toLocaleString('en-IN', { maximumFractionDigits: 0 });
         }
 
         function calculateROI() {
-            const teamSize = Math.max(1, Number(document.getElementById('teamSize').value) || 0);
-            const hoursPerWeek = Math.max(1, Number(document.getElementById('hoursPerWeek').value) || 0);
-            const hourlyRate = Math.max(100, Number(document.getElementById('hourlyRate').value) || 0);
+            const teamSize        = Math.max(1, Number(document.getElementById('teamSize').value) || 0);
+            const hoursPerWeek    = Math.max(1, Number(document.getElementById('hoursPerWeek').value) || 0);
+            const hourlyRate      = Math.max(100, Number(document.getElementById('hourlyRate').value) || 0);
             const automationLevel = Number(document.getElementById('automationLevel').value) || 0;
-            const projectBudget = Math.max(10000, Number(document.getElementById('projectBudget').value) || 0);
+            const projectBudget   = Math.max(10000, Number(document.getElementById('projectBudget').value) || 0);
 
-            const weeksPerYear = 52;
-            const manualHoursPerYear = teamSize * hoursPerWeek * weeksPerYear;
-            const annualManualCost = manualHoursPerYear * hourlyRate;
-            
-            const coverage = automationLevel / 100;
-            const hoursFreed = manualHoursPerYear * coverage;
-            const savings = annualManualCost * coverage;
-            
-            const paybackYears = savings > 0 ? (projectBudget / savings) : 0;
-            const paybackMonths = paybackYears * 12;
-            const roiMultiple = savings > 0 ? (savings / projectBudget) : 0;
+            const manualHoursPerYear = teamSize * hoursPerWeek * 52;
+            const annualManualCost   = manualHoursPerYear * hourlyRate;
+            const coverage           = automationLevel / 100;
+            const hoursFreed         = manualHoursPerYear * coverage;
+            const savings            = annualManualCost * coverage;
+            const paybackMonths      = savings > 0 ? (projectBudget / savings) * 12 : 0;
+            const roiMultiple        = savings > 0 ? (savings / projectBudget) : 0;
 
-            // Update Metrics Card
-            document.getElementById('outAnnualCost').textContent = formatINR(annualManualCost);
-            document.getElementById('outHoursFreed').textContent = formatINR(Math.round(hoursFreed)) + ' hrs';
-            document.getElementById('outWeeksFreed').textContent = Math.max(1, Math.round(hoursFreed / 40)) + ' weeks';
-            document.getElementById('outSavings').textContent = formatINR(savings);
-            document.getElementById('outCoverage').textContent = Math.round(automationLevel) + '% coverage';
-            
-            const paybackLabel = paybackMonths === 0 ? 'n/a' : 
-                                paybackMonths < 1 ? '< 1 month' : 
-                                paybackMonths.toFixed(1) + ' months';
-            document.getElementById('outPayback').textContent = paybackLabel;
-            document.getElementById('outROI').textContent = roiMultiple > 0 ? roiMultiple.toFixed(1) + 'x ROI' : 'n/a';
+            document.getElementById('outAnnualCost').textContent  = formatINR(annualManualCost);
+            document.getElementById('outHoursFreed').textContent  = formatINR(Math.round(hoursFreed)) + ' hrs';
+            document.getElementById('outWeeksFreed').textContent  = Math.max(1, Math.round(hoursFreed / 40)) + ' weeks';
+            document.getElementById('outSavings').textContent     = formatINR(savings);
+            document.getElementById('outCoverage').textContent    = Math.round(automationLevel) + '% coverage';
+            document.getElementById('outPayback').textContent     = paybackMonths < 1 ? '< 1 month' : paybackMonths.toFixed(1) + ' months';
+            document.getElementById('outROI').textContent         = roiMultiple > 0 ? roiMultiple.toFixed(1) + 'x ROI' : 'n/a';
 
-            // Update Hero Card
-            document.getElementById('heroAnnualCost').textContent = formatINR(annualManualCost);
+            document.getElementById('heroAnnualCost').textContent  = formatINR(annualManualCost);
             document.getElementById('heroSavingsValue').textContent = formatINR(savings);
-            const heroBar = document.getElementById('heroSavingsBar');
             const heroPct = Math.max(20, Math.min(95, automationLevel));
-            heroBar.style.width = heroPct + '%';
+            document.getElementById('heroSavingsBar').style.width      = heroPct + '%';
             document.getElementById('heroAutomationPercent').textContent = heroPct + '% of repeatable tasks';
         }
 
         function resetROI() {
-            document.getElementById('industry').value = 'SaaS';
-            document.getElementById('teamSize').value = 3;
-            document.getElementById('hoursPerWeek').value = 25;
-            document.getElementById('hourlyRate').value = 600;
+            document.getElementById('industry').value        = 'SaaS';
+            document.getElementById('teamSize').value        = 3;
+            document.getElementById('hoursPerWeek').value    = 25;
+            document.getElementById('hourlyRate').value      = 600;
             document.getElementById('automationLevel').value = 70;
-            document.getElementById('projectBudget').value = 180000;
+            document.getElementById('projectBudget').value   = 180000;
             updateAutomationLabel();
             calculateROI();
         }
 
         function updateAutomationLabel() {
-            const slider = document.getElementById('automationLevel');
-            const label = document.getElementById('automationLabel');
-            label.textContent = slider.value + '%';
+            document.getElementById('automationLabel').textContent = document.getElementById('automationLevel').value + '%';
         }
 
+        /* ══ Workflow Spec Generator ══ */
         function generateSpec() {
-            const text = document.getElementById('workflowText').value.trim();
+            const text   = document.getElementById('workflowText').value.trim();
             const output = document.getElementById('specOutput');
-            
-            if (!text) {
-                output.textContent = "Describe a workflow first — for example, how leads move from capture to closed-won, or how support tickets are handled.";
-                return;
-            }
-
-            const maxLen = 700;
-            const trimmed = text.length > maxLen ? text.slice(0, maxLen) + "..." : text;
-            
+            if (!text) { output.textContent = 'Describe a workflow first.'; return; }
+            const trimmed = text.length > 700 ? text.slice(0, 700) + '...' : text;
             const spec = [
-                "<strong>Context:</strong> " + trimmed,
-                "",
-                "<strong>Automation lens:</strong>",
-                "• <strong>Trigger events:</strong> new data entering your system (forms, CRM updates, webhooks, emails).",
-                "• <strong>Normalised entities:</strong> leads, tickets, properties, customers, tasks.",
-                "• <strong>Decision points:</strong> priority rules, routing logic, SLAs, thresholds.",
-                "• <strong>Actions:</strong> outreach messages, assignments, updates, nudges, summaries.",
-                "",
-                "<strong>Suggested first build:</strong>",
-                "1. Capture events into a single queue with clear ownership.",
-                "2. Use an LLM (Claude/Gemini/GPT) to classify and summarise each item.",
-                "3. Auto-assign using simple rules you control — not black-box AI magic.",
-                "4. Generate first-draft responses and follow-ups, ready for human approval.",
-                "5. Keep an audit trail so your team and compliance stay comfortable.",
-                "",
-                "<strong>Next step:</strong> In a paid discovery sprint I map this into diagrams, edge cases and a build plan your team can sign off on without guessing."
-            ].join("
-");
-
-            output.innerHTML = "<strong>Spec preview:</strong>
-
-" + spec.replace(/
-/g, '<br>');
+                '<strong>Context:</strong> ' + trimmed, '',
+                '<strong>Automation lens:</strong>',
+                '• <strong>Trigger events:</strong> new data entering your system (forms, CRM updates, webhooks, emails).',
+                '• <strong>Normalised entities:</strong> leads, tickets, properties, customers, tasks.',
+                '• <strong>Decision points:</strong> priority rules, routing logic, SLAs, thresholds.',
+                '• <strong>Actions:</strong> outreach messages, assignments, updates, nudges, summaries.', '',
+                '<strong>Suggested first build:</strong>',
+                '1. Capture events into a single queue with clear ownership.',
+                '2. Use an LLM (Claude/Gemini/GPT) to classify and summarise each item.',
+                '3. Auto-assign using simple rules you control — not black-box AI magic.',
+                '4. Generate first-draft responses and follow-ups, ready for human approval.',
+                '5. Keep an audit trail so your team and compliance stay comfortable.', '',
+                '<strong>Next step:</strong> In a paid discovery sprint I map this into diagrams, edge cases and a build plan your team can sign off on without guessing.'
+            ].join('\n');
+            output.innerHTML = '<strong>Spec preview:</strong>\n\n' + spec.replace(/\n/g, '<br>');
         }
 
         function clearSpec() {
-            const output = document.getElementById('specOutput');
-            output.innerHTML = "<strong>Spec preview:</strong> This is a local transformation — no data is sent to any server. Use it to see how your process breaks down into <strong>events, rules and automations</strong> we can wire up with Claude, Gemini or GPT.";
+            document.getElementById('specOutput').innerHTML = '<strong>Spec preview:</strong> This is a local transformation — no data is sent to any server. Use it to see how your process breaks down into <strong>events, rules and automations</strong> we can wire up with Claude, Gemini or GPT.';
         }
 
+        /* ══ Init ══ */
         document.getElementById('automationLevel').addEventListener('input', updateAutomationLabel);
 
         document.addEventListener('DOMContentLoaded', () => {
-            const yearSpan = document.getElementById('year');
-            if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+            document.getElementById('year').textContent = new Date().getFullYear();
             updateAutomationLabel();
             calculateROI();
+            loadGitHubIntelligence();  // ← Live GitHub API call on load
         });
     </script>
 </body>
