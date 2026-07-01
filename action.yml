@@ -1,0 +1,117 @@
+# ============================================================
+# SNTL84 Repo Intelligence — GitHub Marketplace Action
+# Author : Milan · SNTL84 · Golden Lotus · desidevloper.com
+# Version: 1.0.0  |  Released: 2026-07-01
+# Live Dashboard: https://sntl84.github.io/sntl84-repo-counter/
+# ============================================================
+
+name: 'SNTL84 Repo Intelligence'
+
+description: >-
+  Fetch live GitHub stats for any user via REST & GraphQL API.
+  Outputs repo count, total stars, top language, follower count
+  and a full JSON payload — ready for dashboards, README badges
+  and downstream workflow steps. Built by SNTL84 · desidevloper.com
+
+author: 'Milan · SNTL84 · Golden Lotus · desidevloper.com'
+
+branding:
+  icon: 'activity'
+  color: 'green'
+
+# ── INPUTS ────────────────────────────────────────────────────
+inputs:
+  github-token:
+    description: >
+      GitHub token for API access. Use ${{ secrets.GITHUB_TOKEN }}
+      for public repos. A PAT with read:user scope is required
+      for private repo stats or higher rate limits (5000 req/hr).
+    required: true
+
+  target-user:
+    description: >
+      GitHub username to analyse.
+      Defaults to the owner of the repository running this Action.
+    required: false
+    default: '${{ github.repository_owner }}'
+
+  output-format:
+    description: >
+      Format for the stats-json output.
+      Options: summary | json | markdown
+      - summary : human-readable text block
+      - json    : raw JSON string (pipe into jq or downstream steps)
+      - markdown: formatted markdown table
+    required: false
+    default: 'json'
+
+  include-private:
+    description: >
+      Set to true to include private repo count in totals.
+      Requires a PAT with repo scope — GITHUB_TOKEN is sufficient
+      only when running in the same private repo.
+    required: false
+    default: 'false'
+
+# ── OUTPUTS ───────────────────────────────────────────────────
+outputs:
+  repo-count:
+    description: 'Total number of public repositories for the target user'
+
+  total-stars:
+    description: 'Sum of stargazers_count across all public repositories'
+
+  top-language:
+    description: 'Most frequently used programming language across all repos'
+
+  followers:
+    description: 'Total follower count for the target user'
+
+  following:
+    description: 'Total following count for the target user'
+
+  latest-repo:
+    description: 'Name of the most recently pushed-to repository'
+
+  stats-json:
+    description: >
+      Full stats payload as a JSON string. Fields: repo_count,
+      total_stars, top_language, followers, following,
+      latest_repo, language_breakdown, fetched_at.
+
+# ── RUNTIME ───────────────────────────────────────────────────
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
+
+# ── USAGE EXAMPLES (see README.md for full docs) ──────────────
+# Minimal:
+#   - uses: SNTL84/sntl84-repo-counter@v1
+#     with:
+#       github-token: ${{ secrets.GITHUB_TOKEN }}
+#
+# With custom target user:
+#   - uses: SNTL84/sntl84-repo-counter@v1
+#     with:
+#       github-token: ${{ secrets.GITHUB_TOKEN }}
+#       target-user: 'torvalds'
+#       output-format: 'markdown'
+#
+# Consume outputs:
+#   - name: Fetch GitHub Intelligence
+#     id: gh-intel
+#     uses: SNTL84/sntl84-repo-counter@v1
+#     with:
+#       github-token: ${{ secrets.GITHUB_TOKEN }}
+#   - name: Print stats
+#     run: |
+#       echo "Repos  : ${{ steps.gh-intel.outputs.repo-count }}"
+#       echo "Stars  : ${{ steps.gh-intel.outputs.total-stars }}"
+#       echo "Top Lang: ${{ steps.gh-intel.outputs.top-language }}"
+#
+# ── SIGNATURE WATERMARK ───────────────────────────────────────
+# SNTL84 · Milan · Golden Lotus · Surat, India
+# GitHub  : https://github.com/SNTL84
+# Web     : https://desidevloper.com
+# Built with AI browser automation · Perplexity Comet · 2026-07-01
+# ──────────────────────────────────────────────────────────────
