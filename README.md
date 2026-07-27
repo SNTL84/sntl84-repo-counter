@@ -29,13 +29,13 @@
 | 🌐 Public Repos  | **61** | All public repositories |
 | 🔒 Private Repos | **0** | Requires `GH_PAT` secret (repo scope) for accuracy |
 | 📦 Total Repos   | **61** | Public + Private |
-| ⭐ Total Stars   | **56** | Across all public repos |
+| ⭐ Total Stars   | **57** | Across all public repos |
 | 🍴 Total Forks   | **0** | Across all public repos |
 | 🏆 Top Language  | **HTML** | 21 repos |
 <!-- REPO_COUNT_END -->
 
 <!-- TIMESTAMP_START -->
-> 🕐 *Last updated: **27 Jul 2026 · 11:29 UTC** · Auto-refreshes every 4 hours via GitHub Actions*
+> 🕐 *Last updated: **27 Jul 2026 · 14:45 UTC** · Auto-refreshes every 4 hours via GitHub Actions*
 <!-- TIMESTAMP_END -->
 
 ---
@@ -192,9 +192,9 @@ sequenceDiagram
 <!-- REPO_LIST_START -->
 | # | Repository | Description | Language | ⭐ | 🍴 | Updated |
 |---|------------|-------------|----------|----|----|---------|
-| 1 | [sntl84-repo-counter](https://github.com/SNTL84/sntl84-repo-counter) | 🔢 Auto-updating repo counter for SNTL84 · Milan · desidevloper.com — live count of al | 🌐 HTML | ⭐1 | — | 2026-07-27 |
-| 2 | [api-cookbook](https://github.com/SNTL84/api-cookbook) | A collection of projects and guides with Perplexity's API Platform | — | — | — | 2026-07-26 |
-| 3 | [metromate-mahadev-restaurant-pal-surat-case-study](https://github.com/SNTL84/metromate-mahadev-restaurant-pal-surat-case-study) | MetroMate Performance Marketing — Full-scale launch of Mahadev Restaurant's new branc | 🌐 HTML | — | — | 2026-07-26 |
+| 1 | [metromate-mahadev-restaurant-pal-surat-case-study](https://github.com/SNTL84/metromate-mahadev-restaurant-pal-surat-case-study) | MetroMate Performance Marketing — Full-scale launch of Mahadev Restaurant's new branc | 🌐 HTML | ⭐1 | — | 2026-07-27 |
+| 2 | [sntl84-repo-counter](https://github.com/SNTL84/sntl84-repo-counter) | 🔢 Auto-updating repo counter for SNTL84 · Milan · desidevloper.com — live count of al | 🌐 HTML | ⭐1 | — | 2026-07-27 |
+| 3 | [api-cookbook](https://github.com/SNTL84/api-cookbook) | A collection of projects and guides with Perplexity's API Platform | — | — | — | 2026-07-26 |
 | 4 | [whatsapp-outreach-tool](https://github.com/SNTL84/whatsapp-outreach-tool) | ⚡ Zero-install WhatsApp Outreach Tool — Bulk contact management, custom messages, VCF | 🌐 HTML | ⭐1 | — | 2026-07-24 |
 | 5 | [ts-type-mastery](https://github.com/SNTL84/ts-type-mastery) | 🔥 TypeScript Type Challenges — Elite solutions, annotated mental models & reusable ty | 🔷 TS | ⭐1 | — | 2026-07-24 |
 | 6 | [sntl84-fmcg-lead-intel](https://github.com/SNTL84/sntl84-fmcg-lead-intel) | 🧠 FMCG Lead Intelligence Engine — n8n + Claude AI. Automates distributor outreach: sc | — | ⭐1 | — | 2026-07-24 |
