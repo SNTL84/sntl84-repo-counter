@@ -17,6 +17,7 @@ OPTIMIZATIONS:
 import os
 import re
 import sys
+import time
 import requests
 from datetime import datetime, timezone
 from typing import Tuple, Dict, List, Optional
@@ -62,8 +63,7 @@ def gql(query: str, variables: Optional[Dict] = None, retry_count: int = 0) -> T
 
         if r.status_code != 200:
             if retry_count < MAX_RETRIES:
-                import time
-                time.sleep(RETRY_DELAY)
+                time.sleep(RETRY_DELAY * (2 ** retry_count))
                 return gql(query, variables, retry_count + 1)
             return None, f"HTTP {r.status_code}: {r.text[:200]}"
 
@@ -75,14 +75,12 @@ def gql(query: str, variables: Optional[Dict] = None, retry_count: int = 0) -> T
 
     except requests.Timeout:
         if retry_count < MAX_RETRIES:
-            import time
-            time.sleep(RETRY_DELAY)
+            time.sleep(RETRY_DELAY * (2 ** retry_count))
             return gql(query, variables, retry_count + 1)
         return None, "Request timeout after retries"
     except Exception as e:
         if retry_count < MAX_RETRIES:
-            import time
-            time.sleep(RETRY_DELAY)
+            time.sleep(RETRY_DELAY * (2 ** retry_count))
             return gql(query, variables, retry_count + 1)
         return None, str(e)
 
@@ -101,9 +99,12 @@ query GetRepoCounts {
 """
 
 def gh_get(url: str, params: Optional[Dict] = None, auth: bool = True) -> Dict:
-    """Make authenticated GitHub API call."""
-    headers = HEADERS if auth else {"Accept": "application/vnd.github+json"}
+    """Make a GitHub API call (authenticated when a token exists; anonymous fallback on 401)."""
+    anon = {"Accept": "application/vnd.github+json"}
+    headers = HEADERS if (auth and TOKEN) else anon
     r = requests.get(url, headers=headers, params=params, timeout=15)
+    if r.status_code == 401 and headers is not anon:
+        r = requests.get(url, headers=anon, params=params, timeout=15)
     if r.status_code != 200:
         raise Exception(f"GET {url} → {r.status_code}: {r.text[:300]}")
     return r.json()
@@ -115,7 +116,7 @@ def fetch_public_repos_rest() -> List[Dict]:
         batch = gh_get(
             f"https://api.github.com/users/{USER}/repos",
             params={"per_page": 100, "page": page, "sort": "updated"},
-            auth=False,
+            auth=True,
         )
         if not batch:
             break
@@ -178,6 +179,8 @@ def main():
     try:
         public_count, private_count, login, method = get_counts()
         public_repos = fetch_public_repos_rest()
+        if not public_repos:
+            raise Exception("No public repos returned by API - refusing to overwrite README")
 
         if len(public_repos) > public_count:
             public_count = len(public_repos)
@@ -262,6 +265,15 @@ def main():
             f"<!-- TIMESTAMP_END -->"
         )
 
+        typing_block = (
+            "<!-- TYPING_START -->\n"
+            '<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=26&duration=3000'
+            '&pause=1000&color=22E0B8&center=true&vCenter=true&width=650&lines='
+            'SNTL84+%C2%B7+Live+Repository+Counter;Auto-Updating+Every+4+Hours+%E2%9A%A1;'
+            f'{public_count}+Public+Repos+%C2%B7+Zero+Manual+Effort" alt="Typing SVG" />\n'
+            "<!-- TYPING_END -->"
+        )
+
         with open("README.md", "r", encoding="utf-8") as f:
             readme = f.read()
 
@@ -273,7 +285,7 @@ def main():
             new_readme = readme + "\n" + count_block + "\n"
 
         new_readme, n2 = re.subn(
-            r"<!-- REPO_LIST_START -->.*?<!-- REPO_LIST_END -->",
+            r"<!-- REPO_LIST_START -->.*?(?:<!-- REPO_LIST_END -->|\Z)",
             list_block, new_readme, flags=re.DOTALL,
         )
 
@@ -282,11 +294,16 @@ def main():
             timestamp_block, new_readme, flags=re.DOTALL,
         )
 
+        new_readme, n4 = re.subn(
+            r"<!-- TYPING_START -->.*?<!-- TYPING_END -->",
+            lambda _m: typing_block, new_readme, flags=re.DOTALL,
+        )
+
         with open("README.md", "w", encoding="utf-8") as f:
             f.write(new_readme)
 
         print(f"✅ README.md updated · {total_count} repos · {date_str}")
-        print(f"   Blocks patched: count={n1}, list={n2}, timestamp={n3}")
+        print(f"   Blocks patched: count={n1}, list={n2}, timestamp={n3}, banner={n4}")
 
         return 0
 
