@@ -187,8 +187,8 @@ A: [Message SNTL84 on WhatsApp](https://wa.me/919727413309) or visit [desidevlop
 <!-- REPO_LIST_START -->
 | # | Repository | Description | Language | ⭐ | 🍴 | Updated |
 |---|------------|-------------|----------|----|----|---------|
-| 1 | [Metromate-Website-Roadmap](https://github.com/SNTL84/Metromate-Website-Roadmap) | 🚀 Complete Website Development Roadmap for Tragad Soni ｜ AI-Powered Automation ｜ Supp | 🌐 HTML | ⭐1 | — | 2026-10-04 |
-| 2 | [sntl84-repo-counter](https://github.com/SNTL84/sntl84-repo-counter) | 🔢 Auto-updating repo counter for SNTL84 · Milan · desidevloper.com — live count of al | 🌐 HTML | ⭐1 | — | 2026-10-04 |
+| 1 | [sntl84-repo-counter](https://github.com/SNTL84/sntl84-repo-counter) | 🔢 Auto-updating repo counter for SNTL84 · Milan · desidevloper.com — live count of al | 🌐 HTML | ⭐1 | — | 2026-10-04 |
+| 2 | [Metromate-Website-Roadmap](https://github.com/SNTL84/Metromate-Website-Roadmap) | 🚀 Complete Website Development Roadmap for Tragad Soni ｜ AI-Powered Automation ｜ Supp | 🌐 HTML | ⭐1 | — | 2026-10-04 |
 | 3 | [RamdevCab](https://github.com/SNTL84/RamdevCab) | 🚖 Ramdev Cab Taxi Service, Surat: digital launch kit by SNTL 84 ｜ Automate What's Cos | 🐚 Shell | ⭐1 | — | 2026-10-02 |
 | 4 | [radhey-jewels-metromate-business-setup](https://github.com/SNTL84/radhey-jewels-metromate-business-setup) | 🌟 Case Study: Radhey Jewels (Imitation Jewellery) — Complete WhatsApp, Instagram & Fa | — | ⭐1 | — | 2026-09-23 |
 | 5 | [earth-elements-business-setup](https://github.com/SNTL84/earth-elements-business-setup) | Case Study: Earth Elements (Numerology • Crystal • Gemstone) — Google Business Profil | — | ⭐1 | — | 2026-09-22 |
