@@ -43,7 +43,7 @@ A self-updating, zero-maintenance repository dashboard that pulls live stats str
 <!-- REPO_COUNT_END -->
 
 <!-- TIMESTAMP_START -->
-> 🕐 *Last updated: **04 Oct 2026 · 15:20 UTC** · Auto-refreshes every 4 hours via GitHub Actions*
+> 🕐 *Last updated: **04 Oct 2026 · 19:20 UTC** · Auto-refreshes every 4 hours via GitHub Actions*
 <!-- TIMESTAMP_END -->
 
 ---
@@ -187,35 +187,35 @@ A: [Message SNTL84 on WhatsApp](https://wa.me/919727413309) or visit [desidevlop
 <!-- REPO_LIST_START -->
 | # | Repository | Description | Language | ⭐ | 🍴 | Updated |
 |---|------------|-------------|----------|----|----|---------|
-| 1 | [sntl84-repo-counter](https://github.com/SNTL84/sntl84-repo-counter) | 🔢 Auto-updating repo counter for SNTL84 · Milan · desidevloper.com — live count of al | 🌐 HTML | ⭐1 | — | 2026-10-04 |
+| 1 | [Velocity](https://github.com/SNTL84/Velocity) | 🚀🪐🌕🌑☄️🛸 Opensource equivalent of Google's Antigravity/Claude Code/Cursor | — | ⭐1 | — | 2026-10-04 |
 | 2 | [Metromate-Website-Roadmap](https://github.com/SNTL84/Metromate-Website-Roadmap) | 🚀 Complete Website Development Roadmap for Tragad Soni ｜ AI-Powered Automation ｜ Supp | 🌐 HTML | ⭐1 | — | 2026-10-04 |
-| 3 | [RamdevCab](https://github.com/SNTL84/RamdevCab) | 🚖 Ramdev Cab Taxi Service, Surat: digital launch kit by SNTL 84 ｜ Automate What's Cos | 🐚 Shell | ⭐1 | — | 2026-10-02 |
-| 4 | [radhey-jewels-metromate-business-setup](https://github.com/SNTL84/radhey-jewels-metromate-business-setup) | 🌟 Case Study: Radhey Jewels (Imitation Jewellery) — Complete WhatsApp, Instagram & Fa | — | ⭐1 | — | 2026-09-23 |
-| 5 | [earth-elements-business-setup](https://github.com/SNTL84/earth-elements-business-setup) | Case Study: Earth Elements (Numerology • Crystal • Gemstone) — Google Business Profil | — | ⭐1 | — | 2026-09-22 |
-| 6 | [mads-metro-ad-services](https://github.com/SNTL84/mads-metro-ad-services) | MADS (Metro Ad Services) — cycle advertising business plan, operations dashboard, and | 🌐 HTML | ⭐1 | — | 2026-09-22 |
-| 7 | [sntl84-desidevloper-live-demo](https://github.com/SNTL84/sntl84-desidevloper-live-demo) | 🚀 Live Demo — Services by desidevloper.com ｜ AI Systems · Full-Stack Builds · Supply  | 🌐 HTML | ⭐1 | — | 2026-09-11 |
-| 8 | [metromate-shiv-kathiawadi-thali-brand-development](https://github.com/SNTL84/metromate-shiv-kathiawadi-thali-brand-development) | 🍛 Complete Brand Development Case Study — MetroMate Real Marketing × Shiv Kathiawadi  | 🌐 HTML | ⭐1 | — | 2026-09-09 |
-| 9 | [SNTL84](https://github.com/SNTL84/SNTL84) | — | — | ⭐1 | — | 2026-09-08 |
-| 10 | [SNTL84-Growth-Engine](https://github.com/SNTL84/SNTL84-Growth-Engine) | 🚀 SNTL 84 — Your Growth Engine ｜ Lead Gen • AI Automation • Fulfillment • Bench Resou | — | ⭐3 | — | 2026-08-29 |
-| 11 | [wacrm](https://github.com/SNTL84/wacrm) | Self-hostable CRM template for WhatsApp — shared inbox, contacts, sales pipelines, br | — | — | — | 2026-08-28 |
-| 12 | [metromate-performance-marketing](https://github.com/SNTL84/metromate-performance-marketing) | MetroMate Performance Marketing — social media account cleanup, fulfillment automatio | — | ⭐1 | — | 2026-08-16 |
-| 13 | [metromate-mahadev-restaurant-pal-surat-case-study](https://github.com/SNTL84/metromate-mahadev-restaurant-pal-surat-case-study) | MetroMate Performance Marketing — Full-scale launch of Mahadev Restaurant's new branc | 🌐 HTML | ⭐1 | — | 2026-07-28 |
-| 14 | [Indian-Food-Image-Dataset](https://github.com/SNTL84/Indian-Food-Image-Dataset) | 🍛 Open dataset of Indian food images for AI/ML — built for classification, detection  | — | ⭐1 | — | 2026-07-27 |
-| 15 | [api-cookbook](https://github.com/SNTL84/api-cookbook) | A collection of projects and guides with Perplexity's API Platform | — | — | — | 2026-07-26 |
-| 16 | [whatsapp-outreach-tool](https://github.com/SNTL84/whatsapp-outreach-tool) | ⚡ Zero-install WhatsApp Outreach Tool — Bulk contact management, custom messages, VCF | 🌐 HTML | ⭐1 | — | 2026-07-24 |
-| 17 | [ts-type-mastery](https://github.com/SNTL84/ts-type-mastery) | 🔥 TypeScript Type Challenges — Elite solutions, annotated mental models & reusable ty | 🔷 TS | ⭐1 | — | 2026-07-24 |
-| 18 | [sntl84-fmcg-lead-intel](https://github.com/SNTL84/sntl84-fmcg-lead-intel) | 🧠 FMCG Lead Intelligence Engine — n8n + Claude AI. Automates distributor outreach: sc | — | ⭐1 | — | 2026-07-24 |
-| 19 | [sntl84-multilingual-statement-generator](https://github.com/SNTL84/sntl84-multilingual-statement-generator) | Client Conversion Statements Multilingual Generator — 29 statements · 39 languages ·  | 🌐 HTML | ⭐1 | — | 2026-07-24 |
-| 20 | [sntl84-backoffice-os](https://github.com/SNTL84/sntl84-backoffice-os) | 🏢 BACKOFFICE OS v2.0 — A small utility HR back-office dashboard. Attendance, payroll, | 🌐 HTML | ⭐2 | — | 2026-07-24 |
-| 21 | [sntl84-ai-hiring-intel](https://github.com/SNTL84/sntl84-ai-hiring-intel) | AI Hiring Intelligence System — Strict, business-focused resume evaluator. Built by M | 🌐 HTML | ⭐1 | — | 2026-07-24 |
-| 22 | [sntl84-cohost-virtual-assistant-v3](https://github.com/SNTL84/sntl84-cohost-virtual-assistant-v3) | SNTL 84 Co-Host Virtual Assistant V3 — Premium AI-powered property management landing | 🌐 HTML | ⭐2 | — | 2026-07-14 |
-| 23 | [open-issue-triage](https://github.com/SNTL84/open-issue-triage) | 🔧 Open Source Issue Triage — Maintainer-style responses to GitHub issues across the e | — | ⭐1 | — | 2026-07-03 |
-| 24 | [react](https://github.com/SNTL84/react) | The library for web and native user interfaces. | — | — | — | 2026-06-30 |
-| 25 | [undici](https://github.com/SNTL84/undici) | An HTTP/1.1 client, written from scratch for Node.js | — | — | — | 2026-06-30 |
-| 26 | [sntl84-ecom-ad-campaigns](https://github.com/SNTL84/sntl84-ecom-ad-campaigns) | 📣 Service 08 — Ad Campaign Management ｜ Google · Meta · Instagram · Performance Marke | — | ⭐1 | — | 2026-06-29 |
-| 27 | [sntl84-megait-stores-client](https://github.com/SNTL84/sntl84-megait-stores-client) | 🖥️ MEGA IT STORES — Full Client Digital Package ｜ Product Catalog + Performance Marke | 🌐 HTML | ⭐1 | — | 2026-06-29 |
-| 28 | [sntl84-desidevloper](https://github.com/SNTL84/sntl84-desidevloper) | We learn everyday to think with our tools. ｜ AI Workflow Developer · Automation-Drive | — | ⭐1 | — | 2026-06-27 |
-| 29 | [Velocity](https://github.com/SNTL84/Velocity) | 🚀🪐🌕🌑☄️🛸 Opensource equivalent of Google's Antigravity/Claude Code/Cursor | — | ⭐1 | — | 2026-06-27 |
+| 3 | [sntl84-desidevloper-live-demo](https://github.com/SNTL84/sntl84-desidevloper-live-demo) | 🚀 Live Demo — Services by desidevloper.com ｜ AI Systems · Full-Stack Builds · Supply  | 🌐 HTML | ⭐1 | — | 2026-10-04 |
+| 4 | [sntl84-repo-counter](https://github.com/SNTL84/sntl84-repo-counter) | 🔢 Auto-updating repo counter for SNTL84 · Milan · desidevloper.com — live count of al | 🌐 HTML | ⭐1 | — | 2026-10-04 |
+| 5 | [RamdevCab](https://github.com/SNTL84/RamdevCab) | 🚖 Ramdev Cab Taxi Service, Surat: digital launch kit by SNTL 84 ｜ Automate What's Cos | 🐚 Shell | ⭐1 | — | 2026-10-02 |
+| 6 | [radhey-jewels-metromate-business-setup](https://github.com/SNTL84/radhey-jewels-metromate-business-setup) | 🌟 Case Study: Radhey Jewels (Imitation Jewellery) — Complete WhatsApp, Instagram & Fa | — | ⭐1 | — | 2026-09-23 |
+| 7 | [earth-elements-business-setup](https://github.com/SNTL84/earth-elements-business-setup) | Case Study: Earth Elements (Numerology • Crystal • Gemstone) — Google Business Profil | — | ⭐1 | — | 2026-09-22 |
+| 8 | [mads-metro-ad-services](https://github.com/SNTL84/mads-metro-ad-services) | MADS (Metro Ad Services) — cycle advertising business plan, operations dashboard, and | 🌐 HTML | ⭐1 | — | 2026-09-22 |
+| 9 | [metromate-shiv-kathiawadi-thali-brand-development](https://github.com/SNTL84/metromate-shiv-kathiawadi-thali-brand-development) | 🍛 Complete Brand Development Case Study — MetroMate Real Marketing × Shiv Kathiawadi  | 🌐 HTML | ⭐1 | — | 2026-09-09 |
+| 10 | [SNTL84](https://github.com/SNTL84/SNTL84) | — | — | ⭐1 | — | 2026-09-08 |
+| 11 | [SNTL84-Growth-Engine](https://github.com/SNTL84/SNTL84-Growth-Engine) | 🚀 SNTL 84 — Your Growth Engine ｜ Lead Gen • AI Automation • Fulfillment • Bench Resou | — | ⭐3 | — | 2026-08-29 |
+| 12 | [wacrm](https://github.com/SNTL84/wacrm) | Self-hostable CRM template for WhatsApp — shared inbox, contacts, sales pipelines, br | — | — | — | 2026-08-28 |
+| 13 | [metromate-performance-marketing](https://github.com/SNTL84/metromate-performance-marketing) | MetroMate Performance Marketing — social media account cleanup, fulfillment automatio | — | ⭐1 | — | 2026-08-16 |
+| 14 | [metromate-mahadev-restaurant-pal-surat-case-study](https://github.com/SNTL84/metromate-mahadev-restaurant-pal-surat-case-study) | MetroMate Performance Marketing — Full-scale launch of Mahadev Restaurant's new branc | 🌐 HTML | ⭐1 | — | 2026-07-28 |
+| 15 | [Indian-Food-Image-Dataset](https://github.com/SNTL84/Indian-Food-Image-Dataset) | 🍛 Open dataset of Indian food images for AI/ML — built for classification, detection  | — | ⭐1 | — | 2026-07-27 |
+| 16 | [api-cookbook](https://github.com/SNTL84/api-cookbook) | A collection of projects and guides with Perplexity's API Platform | — | — | — | 2026-07-26 |
+| 17 | [whatsapp-outreach-tool](https://github.com/SNTL84/whatsapp-outreach-tool) | ⚡ Zero-install WhatsApp Outreach Tool — Bulk contact management, custom messages, VCF | 🌐 HTML | ⭐1 | — | 2026-07-24 |
+| 18 | [ts-type-mastery](https://github.com/SNTL84/ts-type-mastery) | 🔥 TypeScript Type Challenges — Elite solutions, annotated mental models & reusable ty | 🔷 TS | ⭐1 | — | 2026-07-24 |
+| 19 | [sntl84-fmcg-lead-intel](https://github.com/SNTL84/sntl84-fmcg-lead-intel) | 🧠 FMCG Lead Intelligence Engine — n8n + Claude AI. Automates distributor outreach: sc | — | ⭐1 | — | 2026-07-24 |
+| 20 | [sntl84-multilingual-statement-generator](https://github.com/SNTL84/sntl84-multilingual-statement-generator) | Client Conversion Statements Multilingual Generator — 29 statements · 39 languages ·  | 🌐 HTML | ⭐1 | — | 2026-07-24 |
+| 21 | [sntl84-backoffice-os](https://github.com/SNTL84/sntl84-backoffice-os) | 🏢 BACKOFFICE OS v2.0 — A small utility HR back-office dashboard. Attendance, payroll, | 🌐 HTML | ⭐2 | — | 2026-07-24 |
+| 22 | [sntl84-ai-hiring-intel](https://github.com/SNTL84/sntl84-ai-hiring-intel) | AI Hiring Intelligence System — Strict, business-focused resume evaluator. Built by M | 🌐 HTML | ⭐1 | — | 2026-07-24 |
+| 23 | [sntl84-cohost-virtual-assistant-v3](https://github.com/SNTL84/sntl84-cohost-virtual-assistant-v3) | SNTL 84 Co-Host Virtual Assistant V3 — Premium AI-powered property management landing | 🌐 HTML | ⭐2 | — | 2026-07-14 |
+| 24 | [open-issue-triage](https://github.com/SNTL84/open-issue-triage) | 🔧 Open Source Issue Triage — Maintainer-style responses to GitHub issues across the e | — | ⭐1 | — | 2026-07-03 |
+| 25 | [react](https://github.com/SNTL84/react) | The library for web and native user interfaces. | — | — | — | 2026-06-30 |
+| 26 | [undici](https://github.com/SNTL84/undici) | An HTTP/1.1 client, written from scratch for Node.js | — | — | — | 2026-06-30 |
+| 27 | [sntl84-ecom-ad-campaigns](https://github.com/SNTL84/sntl84-ecom-ad-campaigns) | 📣 Service 08 — Ad Campaign Management ｜ Google · Meta · Instagram · Performance Marke | — | ⭐1 | — | 2026-06-29 |
+| 28 | [sntl84-megait-stores-client](https://github.com/SNTL84/sntl84-megait-stores-client) | 🖥️ MEGA IT STORES — Full Client Digital Package ｜ Product Catalog + Performance Marke | 🌐 HTML | ⭐1 | — | 2026-06-29 |
+| 29 | [sntl84-desidevloper](https://github.com/SNTL84/sntl84-desidevloper) | We learn everyday to think with our tools. ｜ AI Workflow Developer · Automation-Drive | — | ⭐1 | — | 2026-06-27 |
 | 30 | [ruflo](https://github.com/SNTL84/ruflo) | 🌊 The leading agent meta-harness for Claude. Deploy intelligent multi-agent swarms, c | — | ⭐1 | — | 2026-06-27 |
 | 31 | [cal.diy](https://github.com/SNTL84/cal.diy) | Scheduling infrastructure for absolutely everyone. | — | ⭐1 | — | 2026-06-27 |
 | 32 | [sntl84-desi-quote](https://github.com/SNTL84/sntl84-desi-quote) | ⚡ DesiQuote — Instant Gig Quote Calculator by Milan · SNTL 84 · desidevloper.com ｜ AI | 🌐 HTML | ⭐1 | — | 2026-06-10 |
