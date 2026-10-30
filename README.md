@@ -8,8 +8,11 @@
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=26&duration=3000&pause=1000&color=22E0B8&center=true&vCenter=true&width=650&lines=SNTL84+%C2%B7+Live+Repository+Counter;Auto-Updating+Every+4+Hours+%E2%9A%A1;75+Public+Repos+%C2%B7+Zero+Manual+Effort" alt="Typing SVG" />
 <!-- TYPING_END -->
 
-# 🔢 SNTL84 · Live Repository Counter
+# 🔢 SNTL84 · Live Repository Counter  
+### 🚀 lead-generation-service-9727413309
 
+[![Lead Generation Service](https://img.shields.io/badge/LEAD%20GENERATION%20SERVICE-9727413309-22e0b8?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/919727413309)
+[![WhatsApp](https://img.shields.io/badge/WhatsApp-%2B91%2097274%2013309-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/919727413309)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/SNTL84/sntl84-repo-counter/update-repo-count.yml?branch=main&style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/SNTL84/sntl84-repo-counter/actions)
 [![Auto-Update](https://img.shields.io/badge/Auto--Update-Every%204hrs-brightgreen?style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/SNTL84/sntl84-repo-counter/actions)
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11+-3776ab?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org)
@@ -22,6 +25,9 @@
 
 ### ⚡ *"I Automate What's Costing You Time."*
 **Milan · SNTL 84 · AI Workflow Developer · Surat, India**
+
+> **lead-generation-service-9727413309** — Direct WhatsApp lead line for AI automation, full-stack builds & local marketing systems.  
+> 📞 **+91 97274 13309** · [Chat now](https://wa.me/919727413309)
 
 A self-updating, zero-maintenance repository dashboard that pulls live stats straight from the GitHub REST + GraphQL APIs — no manual edits, no stale numbers, ever.
 
@@ -234,33 +240,4 @@ A: [Message SNTL84 on WhatsApp](https://wa.me/919727413309) or visit [desidevlop
 | 45 | [sntl84-python-foundations-projects](https://github.com/SNTL84/sntl84-python-foundations-projects) | 🐍 Python Foundations — CLI Projects by Milan · SNTL 84 ｜ I Automate What's Costing Yo | 🐍 Python | ⭐1 | — | 2026-06-10 |
 | 46 | [coral-heights-vehicle-registration](https://github.com/SNTL84/coral-heights-vehicle-registration) | Smart WhatsApp-based vehicle registration form for Coral Heights Society A-Wing. Buil | 🌐 HTML | ⭐1 | — | 2026-06-10 |
 | 47 | [ai-lead-enrichment-agent](https://github.com/SNTL84/ai-lead-enrichment-agent) | 🚀 AI Lead Enrichment Agent – Enrich startup leads with founder names, funding stages, | 🌐 HTML | ⭐1 | — | 2026-06-10 |
-| 48 | [sntl84-next-saas-stripe-starter](https://github.com/SNTL84/sntl84-next-saas-stripe-starter) | SaaS Starter with User Roles & Admin Panel — Private fork by SNTL 84 · Milan · Automa | 🔷 TS | ⭐1 | — | 2026-06-10 |
-| 49 | [automate-what-costs-you](https://github.com/SNTL84/automate-what-costs-you) | 🚀 AI Automation Toolkit by Milan · SNTL 84 — Workflows, Bots & Business Intelligence  | 🌐 HTML | ⭐1 | — | 2026-06-10 |
-| 50 | [sntl84-ecom-seo-optimization](https://github.com/SNTL84/sntl84-ecom-seo-optimization) | 🔎 Service 07 — eCommerce SEO Optimization ｜ Google Rank · On-Page · Technical SEO ｜ S | — | ⭐1 | — | 2026-06-10 |
-| 51 | [MetroMate](https://github.com/SNTL84/MetroMate) | 🏢 ResidentialParkingManagementServices ｜ Automate What's Costing You Money ｜ SNTL 84  | 🌐 HTML | ⭐1 | — | 2026-06-10 |
-| 52 | [sntl84-hiring-system](https://github.com/SNTL84/sntl84-hiring-system) | AI-Powered Hiring System — Smart Job Board & Candidate Portal by SNTL 84 ｜ Vercel-Rea | — | ⭐1 | — | 2026-06-08 |
-| 53 | [sntl84-superpowers](https://github.com/SNTL84/sntl84-superpowers) | An agentic skills framework & software development methodology that works. | 🐚 Shell | ⭐1 | — | 2026-06-08 |
-| 54 | [ai-studio-99page-generator](https://github.com/SNTL84/ai-studio-99page-generator) | 99 Page in 3 prompts | 🔷 TS | ⭐1 | — | 2026-06-08 |
-| 55 | [sntl84-desidevloper-services-page](https://github.com/SNTL84/sntl84-desidevloper-services-page) | Desi devloper Services page  | — | ⭐1 | — | 2026-06-08 |
-| 56 | [sntl84-linkedin-activity-archive](https://github.com/SNTL84/sntl84-linkedin-activity-archive) | Complete LinkedIn activity archive for SNTL2784 - Posts, reposts, media links, analyt | — | ⭐1 | — | 2026-06-08 |
-| 57 | [sntl84-real-estate-claude-agent](https://github.com/SNTL84/sntl84-real-estate-claude-agent) | AI-powered property valuation & investment analysis for Surat, Gujarat — SNTL84 Frame | 🔷 TS | ⭐1 | — | 2026-06-08 |
-| 58 | [sntl84-enterprise-ai-services](https://github.com/SNTL84/sntl84-enterprise-ai-services) | 🚀 Enterprise AI Automation & Workflow Solutions — Premium services in AI workflow dev | — | ⭐1 | — | 2026-06-08 |
-| 59 | [sntl84-shopify-leadgen-proposal](https://github.com/SNTL84/sntl84-shopify-leadgen-proposal) | Automate What's Costing You Money — Shopify AI Automation & Growth Systems for D2C Br | 🌐 HTML | ⭐1 | — | 2026-06-08 |
-| 60 | [sntl84-agentic-recruiter](https://github.com/SNTL84/sntl84-agentic-recruiter) | 🤖 AI-Powered Recruitment Screening Module ｜ Automate What's Costing You Money ｜ Reduc | 🌐 HTML | ⭐2 | — | 2026-05-31 |
-| 61 | [awesome-ai-sales-agents](https://github.com/SNTL84/awesome-ai-sales-agents) | A curated Awesome list of AI SDR and autonomous sales agent tools — for founders, sal | — | ⭐1 | — | 2026-05-21 |
-| 62 | [ai-frontend-projects](https://github.com/SNTL84/ai-frontend-projects) | 45 battle-tested AI frontend builds · real revenue targets · ship-ready code · OpenAI | 🌐 HTML | ⭐1 | — | 2026-05-03 |
-| 63 | [sntl84-business-intelligence-push](https://github.com/SNTL84/sntl84-business-intelligence-push) | 🧠 Service Master with Deep BI — 264 Services · 22 Industry Categories · Full B2B Trad | — | ⭐1 | — | 2026-05-02 |
-| 64 | [sntl84-shiv-gujarati-thali](https://github.com/SNTL84/sntl84-shiv-gujarati-thali) | 🍽️ Full-stack digital presence for Shiv Gujarati Unlimited Thali, Surat — Landing pag | 🐚 Shell | ⭐1 | — | 2026-05-02 |
-| 65 | [sntl84-dev-profile](https://github.com/SNTL84/sntl84-dev-profile) | Automate What's Costing You Money. SNTL 84 Developer Profile + Python Journey Tracker | 🌐 HTML | ⭐1 | — | 2026-05-02 |
-| 66 | [sntl84-service-catalog-v1](https://github.com/SNTL84/sntl84-service-catalog-v1) | 🗂️ Service Catalog V1 — 48 AI & Digital Services by SNTL84 ｜ AI Workflow · Web Dev ·  | 🌐 HTML | ⭐1 | — | 2026-05-02 |
-| 67 | [sntl84-ecom-store-setup](https://github.com/SNTL84/sntl84-ecom-store-setup) | 🛒 Service 01 — Full eCommerce Store Setup ｜ Shopify · WooCommerce · Custom Stack ｜ SN | — | ⭐1 | — | 2026-05-02 |
-| 68 | [sntl84-ecom-dropshipping-setup](https://github.com/SNTL84/sntl84-ecom-dropshipping-setup) | 📦 Service 02 — Dropshipping Setup ｜ Supplier Sourcing · Store Automation · ₹0 Invento | — | ⭐1 | — | 2026-05-02 |
-| 69 | [sntl84-ecom-marketplace-listing](https://github.com/SNTL84/sntl84-ecom-marketplace-listing) | 🏪 Service 03 — Marketplace Listing Management ｜ Amazon · Flipkart · Meesho · A+ Conte | — | ⭐1 | — | 2026-05-02 |
-| 70 | [sntl84-ecom-product-sourcing](https://github.com/SNTL84/sntl84-ecom-product-sourcing) | 🔍 Service 04 — Product Sourcing ｜ Supplier Vetting · Margin Protection · India & Asia | — | ⭐1 | — | 2026-05-02 |
-| 71 | [sntl84-ecom-order-fulfillment](https://github.com/SNTL84/sntl84-ecom-order-fulfillment) | 🚚 Service 05 — Order Fulfillment Automation ｜ Shiprocket · Delhivery · End-to-End Ops | — | ⭐1 | — | 2026-05-02 |
-| 72 | [sntl84-ecom-payment-integration](https://github.com/SNTL84/sntl84-ecom-payment-integration) | 💳 Service 06 — Payment Integration ｜ Razorpay · Paytm · UPI · Stripe · COD ｜ SNTL84 D | — | ⭐1 | — | 2026-05-02 |
-| 73 | [sntl84-ecom-inventory-sync](https://github.com/SNTL84/sntl84-ecom-inventory-sync) | 🔄 Service 09 — Inventory Sync & Management ｜ Real-Time Stock · Multi-Channel · EasyEc | — | ⭐1 | — | 2026-05-02 |
-| 74 | [sntl84-ecom-returns-mgmt](https://github.com/SNTL84/sntl84-ecom-returns-mgmt) | ↩️ Service 10 — Returns & RTO Management ｜ Automated Returns · Refunds · RTO Recovery | — | ⭐1 | — | 2026-05-02 |
-| 75 | [shopify-leadgen-proposal](https://github.com/SNTL84/shopify-leadgen-proposal) | Premium Shopify Development & AI Automation — Lead Generation Proposal by desidevlope | — | ⭐1 | — | 2026-04-29 |
-| — | *Private repos* | *0 detected — add GH_PAT secret (repo scope) if you have private repos* | 🔒 Private | — | — | — |
-<!-- REPO_LIST_END -->
+| 48 | [sntl84-next-saas-stripe-starter](https://github.com/SNTL84/sntl84-next-saas-stripe-starter) | SaaS Starter with User Roles & Admin Panel — Private fork by SNTL 84 · Milan · Autom
